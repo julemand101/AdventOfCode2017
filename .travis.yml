@@ -5,8 +5,9 @@ dart:
 - stable
 
 dart_task:
+- test: --platform vm
 - dartanalyzer
-- dartfmt
+- dartfmt: sdk
 
 cache:
    directories:
