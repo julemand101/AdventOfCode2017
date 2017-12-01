@@ -17,8 +17,7 @@ int solveB(String input) {
   int sum = 0;
 
   for (int i = 0; i < input.length; i++) {
-    int next = i + (input.length / 2).toInt();
-    if (input[i] == input[next % input.length]) {
+    if (input[i] == input[(i + (input.length ~/ 2)) % input.length]) {
       sum += int.parse(input[i]);
     }
   }
