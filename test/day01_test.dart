@@ -52,7 +52,7 @@ void main() {
       expect(solveA(PUZZLE_INPUT), equals(995));
     });
   });
-  
+
   group("Part Two", () {
     test('Example 1', () {
       expect(solveB("1212"), equals(6));
