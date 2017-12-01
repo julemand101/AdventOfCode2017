@@ -3,5 +3,9 @@ dart:
 - stable
 
 dart_task:
-- dartanalyzer: --fatal-warnings
-- dartfmt: true
+- dartanalyzer
+- dartfmt
+
+cache:
+ directories:
+- $HOME/.pub-cache
