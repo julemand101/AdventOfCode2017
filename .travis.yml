@@ -9,6 +9,9 @@ dart_task:
 - dartanalyzer
 - dartfmt: sdk
 
-cache:
-   directories:
-    - $HOME/.pub-cache
+notifications:
+  email:
+    recipients:
+      - julemand101@archlinux.dk
+    on_success: always
+    on_failure: always
