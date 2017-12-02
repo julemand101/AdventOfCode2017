@@ -40,4 +40,5 @@ int _getChecksumB(List<int> list) {
       }
     }
   }
+  throw "Bad input: $list";
 }
