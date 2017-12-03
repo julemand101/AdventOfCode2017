@@ -15,7 +15,7 @@ void main() {
     test('Example 3', () {
       expect(solveA(23), equals(2));
     });
-    test('Example 3', () {
+    test('Example 4', () {
       expect(solveA(1024), equals(31));
     });
     test('Solution', () {
@@ -36,17 +36,17 @@ void main() {
   });
 
   group("Part Two", () {
-//    test('Example 1', () {
-//      expect(solveB("5 9 2 8"), equals(4));
-//    });
-//    test('Example 2', () {
-//      expect(solveB("9 4 7 3"), equals(3));
-//    });
-//    test('Example 3', () {
-//      expect(solveB("3 8 6 5"), equals(2));
-//    });
-//    test('Solution', () {
-//      expect(solveB(PUZZLE_INPUT), equals(320));
-//    });
+    test('Example 1', () {
+      expect(solveB(3), equals(4));
+    });
+    test('Example 2', () {
+      expect(solveB(27), equals(54));
+    });
+    test('Example 3', () {
+      expect(solveB(748), equals(806));
+    });
+    test('Solution', () {
+      expect(solveB(277678), equals(279138));
+    });
   });
 }

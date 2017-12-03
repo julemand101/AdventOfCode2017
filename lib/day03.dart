@@ -2,6 +2,7 @@
 // https://adventofcode.com/2017/day/3
 
 import 'dart:math' as math;
+import 'package:tuple/tuple.dart';
 
 int solveA(int input) {
   if (input == 1) {
@@ -62,5 +63,75 @@ int _getBoxSize(int input) {
 }
 
 int solveB(int input) {
-  return 0;
+  Map<Tuple2<int, int>, int> memory = new Map();
+
+  // Start position
+  Tuple2<int, int> position = new Tuple2(0, 0);
+
+  // Initial value
+  _setValue(memory, position, 1);
+
+  while (_getValue(memory, position.item1, position.item2) < input) {
+    position = _getNextStep(memory, position);
+    _setValue(memory, position, _get3x3AreaSum(memory, position));
+  }
+
+  return _getValue(memory, position.item1, position.item2);
+}
+
+Tuple2<int, int> _getNextStep(
+    Map<Tuple2<int, int>, int> memory, Tuple2<int, int> pos) {
+  int x = pos.item1;
+  int y = pos.item2;
+
+  bool north = _getValue(memory, x, y + 1) != 0;
+  bool west = _getValue(memory, x - 1, y) != 0;
+  bool east = _getValue(memory, x + 1, y) != 0;
+  bool south = _getValue(memory, x, y - 1) != 0;
+
+  if ((!north && !west && !east && !south) || (north && !south && !east)) {
+    return new Tuple2(x + 1, y); // east
+  }
+
+  if (!north && west) {
+    return new Tuple2(x, y + 1); // north
+  }
+
+  if (!west && south) {
+    return new Tuple2(x - 1, y); // west
+  }
+
+  if (east && !south) {
+    return new Tuple2(x, y - 1); // south
+  }
+
+  throw ("This should never happen!");
+}
+
+int _get3x3AreaSum(Map<Tuple2<int, int>, int> memory, Tuple2<int, int> pos) {
+  int centerX = pos.item1;
+  int centerY = pos.item2;
+
+  return _getValue(memory, centerX - 1, centerY + 1) +
+      _getValue(memory, centerX, centerY + 1) +
+      _getValue(memory, centerX + 1, centerY + 1) +
+      _getValue(memory, centerX - 1, centerY) +
+      _getValue(memory, centerX, centerY) +
+      _getValue(memory, centerX + 1, centerY) +
+      _getValue(memory, centerX - 1, centerY - 1) +
+      _getValue(memory, centerX, centerY - 1) +
+      _getValue(memory, centerX + 1, centerY - 1);
+}
+
+int _getValue(Map<Tuple2<int, int>, int> memory, int x, int y) {
+  var key = new Tuple2(x, y);
+  return (memory.containsKey(key)) ? memory[key] : 0;
+}
+
+void _setValue(
+    Map<Tuple2<int, int>, int> memory, Tuple2<int, int> pos, int value) {
+  if (memory.containsKey(pos)) {
+    throw ("Trying to write $value in $pos");
+  }
+  memory[pos] = value;
 }
