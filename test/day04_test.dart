@@ -10,13 +10,13 @@ const String DATA_FILE_PATH = "test/data/day04.txt";
 void main() {
   group("Part One", () {
     test('Example 1', () {
-      expect(solveA(["aa bb cc dd ee"]), equals(1)); // 1 = true
+      expect(solveA(["aa bb cc dd ee"]), equals(1)); // valid
     });
     test('Example 2', () {
-      expect(solveA(["aa bb cc dd aa"]), equals(0)); // 0 = false
+      expect(solveA(["aa bb cc dd aa"]), equals(0)); // invalid
     });
     test('Example 3', () {
-      expect(solveA(["aa bb cc dd aaa"]), equals(1)); // 1 = true
+      expect(solveA(["aa bb cc dd aaa"]), equals(1)); // valid
     });
     test('Solution', () {
       File f = new File(DATA_FILE_PATH);
@@ -24,18 +24,25 @@ void main() {
     });
   });
 
-//  group("Part Two", () {
-//    test('Example 1', () {
-//      expect(solveB(3), equals(4));
-//    });
-//    test('Example 2', () {
-//      expect(solveB(27), equals(54));
-//    });
-//    test('Example 3', () {
-//      expect(solveB(748), equals(806));
-//    });
-//    test('Solution', () {
-//      expect(solveB(277678), equals(279138));
-//    });
-//  });
+  group("Part Two", () {
+    test('Example 1', () {
+      expect(solveB(["abcde fghij"]), equals(1)); // valid
+    });
+    test('Example 2', () {
+      expect(solveB(["abcde xyz ecdab"]), equals(0)); // invalid
+    });
+    test('Example 3', () {
+      expect(solveB(["a ab abc abd abf abj"]), equals(1)); // valid
+    });
+    test('Example 4', () {
+      expect(solveB(["iiii oiii ooii oooi oooo"]), equals(1)); // valid
+    });
+    test('Example 5', () {
+      expect(solveB(["oiii ioii iioi iiio"]), equals(0)); // invalid
+    });
+    test('Solution', () {
+      File f = new File(DATA_FILE_PATH);
+      expect(solveB(f.readAsLinesSync()), equals(208));
+    });
+  });
 }
