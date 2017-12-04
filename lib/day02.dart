@@ -1,5 +1,5 @@
 // --- Day 2: Corruption Checksum ---
-// http://adventofcode.com/2017/day/2
+// https://adventofcode.com/2017/day/2
 
 import 'dart:math' as math;
 
