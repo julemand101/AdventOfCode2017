@@ -48,11 +48,14 @@ bool _containsNoAnagrams(String passphrase) {
 
 bool _isAnagram(String word1, String word2) {
   if (word1.length == word2.length) {
+    List<String> word2AsList =
+        new List.generate(word2.length, (int index) => word2[index]);
+
     for (int i = 0; i < word1.length; i++) {
-      if (!word2.contains(word1[i])) {
+      if (!word2AsList.contains(word1[i])) {
         return false;
       } else {
-        word2 = word2.replaceFirst(word1[i], "");
+        word2AsList.remove(word1[i]);
       }
     }
     return true;
