@@ -18,7 +18,7 @@ int solveB(List<int> banks) {
     }
   }
 
-  throw("Something's wrong with the loop!");
+  throw ("Something's wrong with the loop!");
 }
 
 List<List<int>> _solve(List<int> banks) {
