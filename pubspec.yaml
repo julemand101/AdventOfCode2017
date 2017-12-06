@@ -8,6 +8,7 @@ environment:
   sdk: '>=1.20.1 <2.0.0'
 
 dependencies:
+  collection: "^1.14.3"
   tuple: "^1.0.1"
 
 dev_dependencies:
