@@ -39,19 +39,18 @@ void main() {
     });
   });
 
-//  group("Part Two", () {
-//    test('Example 1', () {
-//      expect(solveB([0, 3, 0, 1, -3]), equals(10));
-//    });
-//    test('Solution', () {
-//      File f = new File(DATA_FILE_PATH);
-//      expect(
-//          solveB(f
-//              .readAsLinesSync()
-//              .where((line) => line.trim().isNotEmpty)
-//              .map((line) => int.parse(line))
-//              .toList(growable: false)),
-//          equals(25608480));
-//    });
-//  });
+  group("Part Two", () {
+    test('Example 1', () {
+      expect(solveB(EXAMPLE), equals(60));
+    });
+    test('Solution', () {
+      File f = new File(DATA_FILE_PATH);
+      expect(
+          solveB(f
+              .readAsLinesSync()
+              .where((line) => line.trim().isNotEmpty)
+              .toList(growable: false)),
+          equals(-1));
+    });
+  });
 }
