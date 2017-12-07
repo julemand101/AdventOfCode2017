@@ -1,5 +1,5 @@
 // --- Day 4: High-Entropy Passphrases ---
-// http://adventofcode.com/2017/day/4
+// https://adventofcode.com/2017/day/4
 
 import 'dart:io';
 import 'package:test/test.dart';

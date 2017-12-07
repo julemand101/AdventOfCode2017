@@ -1,5 +1,5 @@
 // --- Day 2: Corruption Checksum ---
-// http://adventofcode.com/2017/day/2
+// https://adventofcode.com/2017/day/2
 
 import 'package:test/test.dart';
 import 'package:AdventOfCode2017/day02.dart';

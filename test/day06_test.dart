@@ -1,5 +1,5 @@
 // --- Day 6: Memory Reallocation ---
-// http://adventofcode.com/2017/day/6
+// https://adventofcode.com/2017/day/6
 
 import 'package:test/test.dart';
 import 'package:AdventOfCode2017/day06.dart';
