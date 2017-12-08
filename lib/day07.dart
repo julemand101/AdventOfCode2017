@@ -72,11 +72,18 @@ int solveB(List<String> lines) {
     }
   }
 
-  nodeCache[solveA(lines)].children.forEach((x) => print(x));
-}
+  var topNode = nodeCache[solveA(lines)];
 
-Node getNode(Node node) {
-  for (Node n in node.children) {
-    node.children.
+  var list = topNode.children.map((x) => x.weight).toList(growable: false);
+
+  print(list);
+
+  var subtract = list[0];
+  for (int i = 0; i < list.length; i++) {
+    list[i] -= subtract;
   }
+
+  list.eve
+
+  return list.where((x) => x != 0).first.abs();
 }
