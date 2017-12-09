@@ -1,6 +1,6 @@
 // --- Day 8: I Heard You Like Registers ---
 // https://adventofcode.com/2017/day/8
-/*
+
 import 'dart:io';
 import 'package:test/test.dart';
 import 'package:AdventOfCode2017/day08.dart';
@@ -26,23 +26,22 @@ void main() {
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
               .toList(growable: false)),
-          equals(-1));
+          equals(5143));
     });
   });
 
-//  group("Part Two", () {
-//    test('Example 1', () {
-//      expect(solveB(EXAMPLE), equals(60));
-//    });
-//    test('Solution', () {
-//      File f = new File(DATA_FILE_PATH);
-//      expect(
-//          solveB(f
-//              .readAsLinesSync()
-//              .where((line) => line.trim().isNotEmpty)
-//              .toList(growable: false)),
-//          equals(-1));
-//    });
-//  });
+  group("Part Two", () {
+    test('Example 1', () {
+      expect(solveB(EXAMPLE), equals(10));
+    });
+    test('Solution', () {
+      File f = new File(DATA_FILE_PATH);
+      expect(
+          solveB(f
+              .readAsLinesSync()
+              .where((line) => line.trim().isNotEmpty)
+              .toList(growable: false)),
+          equals(6209));
+    });
+  });
 }
-*/
