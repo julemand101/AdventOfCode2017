@@ -1,6 +1,6 @@
 // --- Day 8: I Heard You Like Registers ---
 // https://adventofcode.com/2017/day/8
-
+/*
 import 'dart:io';
 import 'package:test/test.dart';
 import 'package:AdventOfCode2017/day08.dart';
@@ -45,3 +45,4 @@ void main() {
 //    });
 //  });
 }
+*/

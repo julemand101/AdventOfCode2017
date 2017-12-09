@@ -23,24 +23,15 @@ String solveA(List<String> lines) {
 }
 
 class Node {
-  final String name;
   int _weight;
   final List<Node> children = new List();
 
-  Node(this.name, this._weight);
+  Node(this._weight);
 
   int get weight => children.fold(_weight, (prev, node) => prev + node.weight);
 
-  void addNode(Node node) {
-    children.add(node);
-  }
-
   void addNodes(Iterable<Node> nodes) {
     children.addAll(nodes);
-  }
-
-  String toString() {
-    return "$name ($_weight) [$weight] -> $children";
   }
 }
 
@@ -55,7 +46,7 @@ int solveB(List<String> lines) {
     if (nodeCache.containsKey(name)) {
       nodeCache[name]._weight = weight;
     } else {
-      nodeCache[name] = new Node(name, weight);
+      nodeCache[name] = new Node(weight);
     }
 
     if (line.contains(" -> ")) {
@@ -64,7 +55,7 @@ int solveB(List<String> lines) {
         if (nodeCache.containsKey(nodeName)) {
           return nodeCache[nodeName];
         } else {
-          var node = new Node(nodeName, -1);
+          var node = new Node(-1);
           nodeCache[nodeName] = node;
           return node;
         }
@@ -72,18 +63,34 @@ int solveB(List<String> lines) {
     }
   }
 
-  var topNode = nodeCache[solveA(lines)];
+  return _findWeight(nodeCache[solveA(lines)]);
+}
 
-  var list = topNode.children.map((x) => x.weight).toList(growable: false);
+int _findWeight(Node input) {
+  Map<int, List<Node>> map = new Map();
 
-  print(list);
-
-  var subtract = list[0];
-  for (int i = 0; i < list.length; i++) {
-    list[i] -= subtract;
+  for (Node node in input.children) {
+    int weight = node.weight;
+    if (map.containsKey(weight)) {
+      map[weight].add(node);
+    } else {
+      map[weight] = new List()..add(node);
+    }
   }
 
-  list.eve
+  if (map.length == 1) {
+    return -1;
+  }
 
-  return list.where((x) => x != 0).first.abs();
+  var oddNode = map.values.singleWhere((list) => list.length == 1).first;
+
+  int result = _findWeight(oddNode);
+
+  if (result != -1) {
+    return result;
+  } else {
+    int a = map.values.singleWhere((list) => list.length > 1).first.weight;
+
+    return oddNode._weight + (a - oddNode.weight);
+  }
 }

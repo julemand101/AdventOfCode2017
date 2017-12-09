@@ -50,7 +50,7 @@ void main() {
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
               .toList(growable: false)),
-          equals(-1));
+          equals(646));
     });
   });
 }
