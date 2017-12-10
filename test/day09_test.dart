@@ -42,18 +42,34 @@ void main() {
     });
   });
 
-//  group("Part Two", () {
-//    test('Example 1', () {
-//      expect(solveB(EXAMPLE), equals(10));
-//    });
-//    test('Solution', () {
-//      File f = new File(DATA_FILE_PATH);
-//      expect(
-//          solveB(f
-//              .readAsLinesSync()
-//              .where((line) => line.trim().isNotEmpty)
-//              .toList(growable: false)),
-//          equals(6209));
-//    });
-//  });
+  group("Part Two", () {
+    test('Example 1', () {
+      expect(solveB("<>"), equals(0));
+    });
+    test('Example 2', () {
+      expect(solveB("<random characters>"), equals(17));
+    });
+    test('Example 3', () {
+      expect(solveB("<<<<>"), equals(3));
+    });
+    test('Example 4', () {
+      expect(solveB("<{!>}>"), equals(2));
+    });
+    test('Example 5', () {
+      expect(solveB("<!!>"), equals(0));
+    });
+    test('Example 6', () {
+      expect(solveB("<!!!>>"), equals(0));
+    });
+    test('Example 7', () {
+      expect(solveB('<{o"i!a,<{i<a>'), equals(10));
+    });
+    test('Solution', () {
+      File f = new File(DATA_FILE_PATH);
+      expect(
+          solveB(
+              f.readAsLinesSync().firstWhere((line) => line.trim().isNotEmpty)),
+          equals(6569));
+    });
+  });
 }
