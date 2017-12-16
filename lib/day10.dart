@@ -28,3 +28,7 @@ void _reverse(List list, int start, int end) {
     list[pos++ % list.length] = element;
   }
 }
+
+String solveB(String input) {
+  var codeUnits = input.codeUnits;
+}

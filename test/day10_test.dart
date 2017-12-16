@@ -33,13 +33,22 @@ void main() {
     });
   });
 
-//  group("Part Two", () {
-//    test('Example 1', () {
-//      expect(solveB([0, 2, 7, 0]), equals(4));
-//    });
-//    test('Solution', () {
-//      expect(solveB([0, 5, 10, 0, 11, 14, 13, 4, 11, 8, 8, 7, 1, 4, 12, 11]),
-//          equals(1695));
-//    });
-//  });
+  group("Part Two", () {
+    test('Example 1', () {
+      expect(solveB(""), equals("a2582a3a0e66e6e86e3812dcb672a272"));
+    });
+    test('Example 2', () {
+      expect(solveB("AoC 2017"), equals("33efeb34ea91902bb2f59c9920caa6cd"));
+    });
+    test('Example 3', () {
+      expect(solveB("1,2,3"), equals("3efbe78a8d82f29979031a4aa0b16a9d"));
+    });
+    test('Example 4', () {
+      expect(solveB("1,2,4"), equals("63960835bcdc130f0b66d7ff4f6a5a8e"));
+    });
+    test('Solution', () {
+      expect(solveB("157,222,1,2,177,254,0,228,159,140,249,187,255,51,76,30"),
+          equals("-1"));
+    });
+  }, skip: "Not implemented yet");
 }
