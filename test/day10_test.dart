@@ -48,7 +48,7 @@ void main() {
     });
     test('Solution', () {
       expect(solveB("157,222,1,2,177,254,0,228,159,140,249,187,255,51,76,30"),
-          equals("-1"));
+          equals("2b0c9cc0449507a0db3babd57ad9e8d8"));
     });
-  }, skip: "Not implemented yet");
+  });
 }
