@@ -30,15 +30,15 @@ void main() {
     });
   });
 
-//  group("Part Two", () {
-//    test('Solution', () {
-//      File f = new File(DATA_FILE_PATH);
-//      expect(
-//          solveB(f
-//              .readAsLinesSync()
-//              .firstWhere((line) => line.trim().isNotEmpty)
-//              .split(",")),
-//          equals(1447));
-//    });
-//  });
+  group("Part Two", () {
+    test('Example 1', () {
+      expect(solveB(EXAMPLE), equals(2));
+    });
+    test('Solution', () {
+      File f = new File(DATA_FILE_PATH);
+      expect(
+          solveB(f.readAsLinesSync().where((line) => line.trim().isNotEmpty)),
+          equals(202));
+    });
+  });
 }
