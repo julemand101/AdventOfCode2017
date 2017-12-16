@@ -16,8 +16,7 @@ class Program {
       return 0;
     }
     history.add(this.name);
-    return programs.fold(1,
-        (count, program) => count + program.visit(history));
+    return programs.fold(1, (count, program) => count + program.visit(history));
   }
 }
 
