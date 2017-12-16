@@ -29,7 +29,7 @@ void main() {
             76,
             30
           ], new List.generate(256, (x) => x)),
-          equals(-1));
+          equals(62238));
     });
   });
 
