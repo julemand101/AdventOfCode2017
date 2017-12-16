@@ -15,10 +15,7 @@ int solveA(List<int> lengths, List<int> circularList) {
 
 String solveB(String input) {
   var lengths = new List.from(input.codeUnits)..addAll([17, 31, 73, 47, 23]);
-
-  print(input);
-  List<int> circularList = new List.generate(256, (x) => x);
-
+  var circularList = new List.generate(256, (x) => x);
   var result = new KnotHashResult(0, 0, 0);
 
   // run a total of 64 rounds
