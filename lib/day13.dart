@@ -39,7 +39,7 @@ int _move(int time, int range) {
   int pos = 0;
   bool back = false;
 
-  for (int i = 0; i < time; i++) {
+  for (int i = 0; i < time % ((range - 1) * 2); i++) {
     if (back) {
       if (--pos == 0) {
         back = false;
