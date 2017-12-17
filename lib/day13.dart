@@ -5,6 +5,24 @@ import 'dart:math' as math;
 
 int solveA(Iterable<String> inputs) {
   Map<int, int> map = _parse(inputs);
+  return _solve(map);
+}
+
+int solveB(Iterable<String> inputs) {
+  Map<int, int> map = _parse(inputs);
+  int delay = 0;
+  int result = 0;
+
+  while (true) {
+    if (_solve(map, startTime: delay, stopWhenCaught: true) == 0) {
+      return delay;
+    } else {
+      delay++;
+    }
+  }
+}
+
+int _solve(Map<int, int> map, {startTime: 0, stopWhenCaught: false}) {
   int max = map.keys.reduce(math.max);
   int score = 0;
 
@@ -12,8 +30,12 @@ int solveA(Iterable<String> inputs) {
     if (map.containsKey(depth)) {
       int range = map[depth];
 
-      if (_move(depth, range) == 0) {
+      if (_move(depth + startTime, range) == 0) {
         score += (depth * range);
+
+        if (stopWhenCaught) {
+          return 1;
+        }
       }
     }
   }
