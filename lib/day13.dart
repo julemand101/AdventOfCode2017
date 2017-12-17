@@ -11,7 +11,6 @@ int solveA(Iterable<String> inputs) {
 int solveB(Iterable<String> inputs) {
   Map<int, int> map = _parse(inputs);
   int delay = 0;
-  int result = 0;
 
   while (true) {
     if (_solve(map, startTime: delay, stopWhenCaught: true) == 0) {
