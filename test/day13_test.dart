@@ -33,4 +33,20 @@ void main() {
           equals(3907470));
     });
   });
+
+  group("Part Two - with isolates", () {
+    int chunksize = 1000;
+
+    test('Example 1', () {
+      expect(solveB_with_isolates(EXAMPLE, chunksize), completion(equals(10)));
+    });
+    test('Solution', () {
+      File f = new File(DATA_FILE_PATH);
+      expect(
+          solveB_with_isolates(
+              f.readAsLinesSync().where((line) => line.trim().isNotEmpty),
+              chunksize),
+          completion(equals(3907470)));
+    });
+  });
 }

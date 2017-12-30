@@ -1,6 +1,9 @@
 // --- Day 13: Packet Scanners ---
 // https://adventofcode.com/2017/day/13
 
+import 'dart:io';
+import 'dart:async';
+import 'dart:isolate';
 import 'dart:math' as math;
 
 int solveA(Iterable<String> inputs) {
@@ -19,6 +22,71 @@ int solveB(Iterable<String> inputs) {
       delay++;
     }
   }
+}
+
+Future<int> solveB_with_isolates(Iterable<String> inputs, int chunkSize) {
+  Completer<int> completer = new Completer();
+  Map<int, int> map = _parse(inputs);
+  int delay = 0;
+  int lowestResult = -1;
+  int numberOfActiveIsolates = Platform.numberOfProcessors + 1;
+
+  RawReceivePort rport = new RawReceivePort((List input) {
+    int result = input[0];
+    SendPort sport = input[1];
+
+    if (result == -1) {
+      if (lowestResult == -1) {
+        sport.send([delay, delay += chunkSize]);
+      } else {
+        numberOfActiveIsolates--;
+        sport.send([-1, -1]);
+      }
+    } else {
+      numberOfActiveIsolates--;
+      if (lowestResult == -1 || result < lowestResult) {
+        lowestResult = result;
+      }
+    }
+
+    if (numberOfActiveIsolates == 0) {
+      completer.complete(lowestResult);
+    }
+  });
+
+  for (int i = 0; i < numberOfActiveIsolates; i++) {
+    Isolate.spawn(_work, [map, rport.sendPort]);
+  }
+
+  return completer.future;
+}
+
+void _work(List args) {
+  Map<int, int> map = args[0];
+  SendPort sport = args[1];
+
+  RawReceivePort rport = new RawReceivePort();
+  rport.handler = ((List input) {
+    int from = input[0];
+    int to = input[1];
+
+    if (from == -1 || to == -1) {
+      rport.close();
+      return;
+    }
+
+    for (int delay = from; delay < to; delay++) {
+      if (_solve(map, startTime: delay, stopWhenCaught: true) == 0) {
+        sport.send([delay, rport.sendPort]);
+        rport.close();
+        return;
+      }
+    }
+
+    sport.send([-1, rport.sendPort]);
+  });
+
+  sport.send([-1, rport.sendPort]);
 }
 
 int _solve(Map<int, int> map, {startTime: 0, stopWhenCaught: false}) {
