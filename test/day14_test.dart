@@ -13,4 +13,13 @@ void main() {
       expect(solveA("ljoxqyyw"), equals(8316));
     });
   });
+
+  group("Part Two", () {
+    test('Example 1', () {
+      expect(solveB("flqrgnkx"), equals(1242));
+    });
+    test('Solution', () {
+      expect(solveB("ljoxqyyw"), equals(1074));
+    });
+  });
 }

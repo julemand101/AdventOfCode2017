@@ -19,3 +19,49 @@ int solveA(String input) {
 
   return result;
 }
+
+int solveB(String input) {
+  List<List<bool>> list = new List.generate(128, (index) {
+    return int
+        .parse(knotHash.solveB("$input-$index"), radix: 16)
+        .toRadixString(2)
+        .padLeft(128, "0")
+        .codeUnits
+        .map((value) => value == CODEUNIT_1)
+        .toList(growable: false);
+  }, growable: false);
+
+  int regions = 0;
+
+  for (int x = 0; x < list.length; x++) {
+    for (int y = 0; y < list[x].length; y++) {
+      if (list[x][y]) {
+        regions++;
+        _deleteRegion(x, y, list);
+      }
+    }
+  }
+
+  return regions;
+}
+
+void _deleteRegion(int x, int y, List<List<bool>> list) {
+  if (list[x][y]) {
+    list[x][y] = false;
+
+    _deleteRegion(_check(x + 1), _check(y), list);
+    _deleteRegion(_check(x - 1), _check(y), list);
+    _deleteRegion(_check(x), _check(y + 1), list);
+    _deleteRegion(_check(x), _check(y - 1), list);
+  }
+}
+
+int _check(int coordinate) {
+  if (coordinate < 0) {
+    return 0;
+  } else if (coordinate > 127) {
+    return 127;
+  } else {
+    return coordinate;
+  }
+}
