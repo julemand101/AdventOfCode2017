@@ -15,4 +15,15 @@ void main() {
       expect(solveA(289, 629), equals(638));
     });
   });
+
+  group("Part Two", () {
+    test('Example 1', () {
+      expect(solveB(65, 8921), equals(309));
+    });
+    test('Solution', () {
+      // Generator A starts with 289
+      // Generator B starts with 629
+      expect(solveB(289, 629), equals(343));
+    });
+  });
 }
