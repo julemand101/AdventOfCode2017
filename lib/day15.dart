@@ -13,10 +13,8 @@ int solveA(int startA, int startB) {
   for (int i = 0; i < 40000000; i++) {
     a = _next(a, FACTOR_A);
     b = _next(b, FACTOR_B);
-    String ab = a.toRadixString(2).padLeft(32, "0").substring(16);
-    String bb = b.toRadixString(2).padLeft(32, "0").substring(16);
 
-    if (ab == bb) {
+    if ((a & 0xFFFF) == (b & 0xFFFF)) {
       result++;
     }
   }
