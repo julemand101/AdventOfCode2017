@@ -31,7 +31,7 @@ String solveB(String input) {
         .fold(0, (x, y) => x ^ y)
         .toRadixString(16);
 
-    sb.write(hex.length == 1 ? "0$hex" : hex);
+    sb.write(hex.padLeft(2, "0"));
   }
 
   return sb.toString();
