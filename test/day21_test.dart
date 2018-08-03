@@ -17,12 +17,14 @@ void main() {
     test('Example 1', () {
       expect(solve(EXAMPLE, 2), equals(12));
     });
-      test('Solution', () {
+    test('Solution', () {
       expect(
-          solve(new File(DATA_FILE_PATH)
-              .readAsLinesSync()
-              .where((line) => line.trim().isNotEmpty)
-              .toList(growable: false), 5),
+          solve(
+              new File(DATA_FILE_PATH)
+                  .readAsLinesSync()
+                  .where((line) => line.trim().isNotEmpty)
+                  .toList(growable: false),
+              5),
           equals(150));
     });
   });
@@ -30,10 +32,12 @@ void main() {
   group("Part Two", () {
     test('Solution', () {
       expect(
-          solve(new File(DATA_FILE_PATH)
-              .readAsLinesSync()
-              .where((line) => line.trim().isNotEmpty)
-              .toList(growable: false), 18),
+          solve(
+              new File(DATA_FILE_PATH)
+                  .readAsLinesSync()
+                  .where((line) => line.trim().isNotEmpty)
+                  .toList(growable: false),
+              18),
           equals(2606275));
     });
   });
