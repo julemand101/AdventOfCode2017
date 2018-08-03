@@ -37,4 +37,22 @@ void main() {
           equals(5433));
     });
   });
+  group("Part Two", () {
+    test('Example 1', () {
+      expect(solveB(EXAMPLE, 100), equals(26));
+    });
+    test('Example 2', () {
+      expect(solveB(EXAMPLE, 10000000), equals(2511944));
+    });
+    test('Solution', () {
+      expect(
+          solveB(
+              new File(DATA_FILE_PATH)
+                  .readAsLinesSync()
+                  .where((line) => line.trim().isNotEmpty)
+                  .toList(growable: false),
+              10000000),
+          equals(2512599));
+    });
+  });
 }

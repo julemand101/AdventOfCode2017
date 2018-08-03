@@ -1,23 +1,22 @@
 // --- Day 22: Sporifica Virus ---
 // https://adventofcode.com/2017/day/22
 
+typedef void VirusCall(Virus virus);
+
 int solveA(List<String> mapList, int burstsOfActivity) {
-  Map map = new Map();
+  return solve(mapList, burstsOfActivity, (virus) => virus.burstA());
+}
 
-  for (int y = 0; y < mapList.length; y++) {
-    String line = mapList[y];
+int solveB(List<String> mapList, int burstsOfActivity) {
+  return solve(mapList, burstsOfActivity, (virus) => virus.burstB());
+}
 
-    for (int x = 0; x < line.length; x++) {
-      if (line[x] == "#") {
-        map.infect(x, y);
-      }
-    }
-  }
-
+int solve(List<String> mapList, int burstsOfActivity, VirusCall virusCall) {
+  InfectionMap map = new InfectionMap(mapList);
   Virus virus = new Virus(mapList.length, map);
 
   for (int i = 0; i < burstsOfActivity; i++) {
-    virus.burst();
+    virusCall(virus);
   }
 
   return virus.infectCount;
@@ -28,15 +27,22 @@ enum Direction { left, right, up, down }
 class Virus {
   int x;
   int y;
-  final Map map;
+  final InfectionMap map;
   Direction direction = Direction.up;
   int infectCount = 0;
+
+  final Map<State, State> stateTransform = {
+    State.clean: State.weakened,
+    State.weakened: State.infected,
+    State.infected: State.flagged,
+    State.flagged: State.clean
+  };
 
   Virus(int mapSize, this.map)
       : this.x = (mapSize / 2).floor(),
         this.y = (mapSize / 2).floor();
 
-  void burst() {
+  void burstA() {
     bool isCurrentNodeInfected = map.isInfected(x, y);
 
     if (isCurrentNodeInfected) {
@@ -49,6 +55,33 @@ class Virus {
       map.clean(x, y);
     } else {
       map.infect(x, y);
+      infectCount++;
+    }
+
+    stepForward();
+  }
+
+  void burstB() {
+    State currentState = map.getState(x, y);
+
+    switch (currentState) {
+      case State.clean:
+        turnLeft();
+        break;
+      case State.weakened:
+        // No turn
+        break;
+      case State.infected:
+        turnRight();
+        break;
+      case State.flagged:
+        turnAround();
+        break;
+    }
+
+    State newState = stateTransform[currentState];
+    map.setState(x, y, newState);
+    if (newState == State.infected) {
       infectCount++;
     }
 
@@ -89,6 +122,23 @@ class Virus {
     }
   }
 
+  void turnAround() {
+    switch (direction) {
+      case Direction.up:
+        direction = Direction.down;
+        break;
+      case Direction.left:
+        direction = Direction.right;
+        break;
+      case Direction.down:
+        direction = Direction.up;
+        break;
+      case Direction.right:
+        direction = Direction.left;
+        break;
+    }
+  }
+
   void stepForward() {
     switch (direction) {
       case Direction.up:
@@ -107,11 +157,46 @@ class Virus {
   }
 }
 
-class Map {
-  Set<String> _infected = new Set();
+enum State { clean, weakened, infected, flagged }
 
-  void infect(int x, int y) => _infected.add(_xyToString(x, y));
-  void clean(int x, int y) => _infected.remove(_xyToString(x, y));
-  bool isInfected(int x, int y) => _infected.contains(_xyToString(x, y));
-  String _xyToString(int x, int y) => "$x-$y";
+class InfectionMap {
+  Map<int, State> _infected = new Map(); // element not in map == clean
+
+  InfectionMap(List<String> mapList) {
+    for (int y = 0; y < mapList.length; y++) {
+      String line = mapList[y];
+
+      for (int x = 0; x < line.length; x++) {
+        if (line[x] == "#") {
+          infect(x, y);
+        }
+      }
+    }
+  }
+
+  void infect(int x, int y) => _infected[_xyToInt(x, y)] = State.infected;
+
+  void clean(int x, int y) => _infected.remove(_xyToInt(x, y));
+
+  State getState(int x, int y) => _infected[_xyToInt(x, y)] ?? State.clean;
+
+  void setState(int x, int y, State state) {
+    if (state == State.clean) {
+      clean(x, y);
+    } else {
+      _infected[_xyToInt(x, y)] = state;
+    }
+  }
+
+  bool isInfected(int x, int y) => _infected[_xyToInt(x, y)] == State.infected;
+
+  // https://stackoverflow.com/a/919661
+  int _xyToInt(int x, int y) {
+    x = f(x);
+    y = f(y);
+
+    return ((x + y) * (x + y + 1) ~/ 2) + y;
+  }
+
+  int f(n) => (n >= 0) ? n * 2 : (-n * 2) - 1;
 }
