@@ -31,4 +31,16 @@ void main() {
           equals(1868));
     });
   });
+  group("Part Two", () {
+    test('Example 1', () {
+      expect(solveB(EXAMPLE), equals(19));
+    });
+    test('Solution', () {
+      expect(
+          solveB(new File(DATA_FILE_PATH)
+              .readAsLinesSync()
+              .where((line) => line.trim().isNotEmpty)),
+          equals(1841));
+    });
+  });
 }
