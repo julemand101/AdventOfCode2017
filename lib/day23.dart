@@ -41,5 +41,28 @@ int solveA(List<String> program) {
   return mulCalls;
 }
 
+// Manually optimized
+int solveB(_) {
+  var h = 0;
+
+  for (var b = 105700; b <= 122700; b += 17) {
+    if (!isPrime(b)) {
+      h++;
+    }
+  }
+
+  return h;
+}
+
+// https://introcs.cs.princeton.edu/java/13flow/Prime.java.html
+bool isPrime(int b) {
+  for (var d = 2; (d * d) <= b; d++) {
+    if (b % d == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
 int getValue(Map<String, int> registers, String value) =>
     int.parse(value, onError: (string) => registers[string]);

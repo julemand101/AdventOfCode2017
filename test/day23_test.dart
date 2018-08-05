@@ -18,4 +18,14 @@ void main() {
           equals(3025));
     });
   });
+  group("Part Two", () {
+    test('Solution', () {
+      expect(
+          solveB(new File(DATA_FILE_PATH)
+              .readAsLinesSync()
+              .where((line) => line.trim().isNotEmpty)
+              .toList(growable: false)),
+          equals(915));
+    });
+  });
 }
