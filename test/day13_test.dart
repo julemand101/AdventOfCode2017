@@ -2,7 +2,7 @@
 // https://adventofcode.com/2017/day/13
 
 // Need more time because Travis are a little slow
-@Timeout(const Duration(seconds: 60))
+@Timeout(const Duration(minutes: 5))
 
 import 'dart:io';
 import 'package:test/test.dart';
