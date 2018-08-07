@@ -9,7 +9,7 @@ int solveA(String input) {
   int result = 0;
 
   for (int i = 0; i < 128; i++) {
-    result += int
+    result += BigInt
         .parse(knotHash.solveB("$input-$i"), radix: 16)
         .toRadixString(2)
         .codeUnits
@@ -22,7 +22,7 @@ int solveA(String input) {
 
 int solveB(String input) {
   List<List<bool>> list = new List.generate(128, (index) {
-    return int
+    return BigInt
         .parse(knotHash.solveB("$input-$index"), radix: 16)
         .toRadixString(2)
         .padLeft(128, "0")

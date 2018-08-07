@@ -65,4 +65,4 @@ bool isPrime(int b) {
 }
 
 int getValue(Map<String, int> registers, String value) =>
-    int.parse(value, onError: (string) => registers[string]);
+    int.tryParse(value) ?? registers[value];

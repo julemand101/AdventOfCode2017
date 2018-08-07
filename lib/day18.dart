@@ -23,15 +23,7 @@ class Memory {
     }
   }
 
-  int getValue(var value) {
-    var temp = int.parse(value, onError: (source) => null);
-
-    if (temp == null) {
-      return getRegister(value);
-    } else {
-      return temp;
-    }
-  }
+  int getValue(var value) => int.tryParse(value) ?? getRegister(value);
 
   void send(int value) {
     _outQueue.add(value);
