@@ -118,7 +118,7 @@ int solve(List<String> input, int iterations) {
           var line2 = lines[j + 1];
 
           for (int k = 0; k + 2 <= line1.length; k += 2) {
-            images.add("${line1[k]}${line1[k+1]}/${line2[k]}${line2[k+1]}");
+            images.add("${line1[k]}${line1[k + 1]}/${line2[k]}${line2[k + 1]}");
           }
         }
 
@@ -139,9 +139,9 @@ int solve(List<String> input, int iterations) {
           var line3 = lines[j + 2];
 
           for (int k = 0; k + 3 <= line1.length; k += 3) {
-            images.add("${line1[k]}${line1[k+1]}${line1[k+2]}/"
-                "${line2[k]}${line2[k+1]}${line2[k+2]}/"
-                "${line3[k]}${line3[k+1]}${line3[k+2]}");
+            images.add("${line1[k]}${line1[k + 1]}${line1[k + 2]}/"
+                "${line2[k]}${line2[k + 1]}${line2[k + 2]}/"
+                "${line3[k]}${line3[k + 1]}${line3[k + 2]}");
           }
         }
 
