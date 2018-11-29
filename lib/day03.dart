@@ -71,12 +71,12 @@ int solveB(int input) {
   // Initial value
   _setValue(memory, position, 1);
 
-  while (_getValue(memory, position.item1, position.item2) < input) {
+  while (_getValueByTuple(memory, position) < input) {
     position = _getNextStep(memory, position);
     _setValue(memory, position, _get3x3AreaSum(memory, position));
   }
 
-  return _getValue(memory, position.item1, position.item2);
+  return _getValueByTuple(memory, position);
 }
 
 Tuple2<int, int> _getNextStep(
@@ -125,6 +125,10 @@ int _get3x3AreaSum(Map<Tuple2<int, int>, int> memory, Tuple2<int, int> pos) {
 
 int _getValue(Map<Tuple2<int, int>, int> memory, int x, int y) {
   var key = new Tuple2(x, y);
+  return (memory.containsKey(key)) ? memory[key] : 0;
+}
+
+int _getValueByTuple(Map<Tuple2<int, int>, int> memory, Tuple2 key) {
   return (memory.containsKey(key)) ? memory[key] : 0;
 }
 
