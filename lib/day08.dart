@@ -27,19 +27,19 @@ class Memory {
 
 int solveA(List<String> lines) {
   Memory memory = new Memory();
+  _solve(lines, memory);
 
-  return _solve(lines, memory);
+  return memory._registers.values.fold(0, math.max);
 }
 
 int solveB(List<String> lines) {
   Memory memory = new Memory();
-
   _solve(lines, memory);
 
   return memory.maxValue;
 }
 
-int _solve(List<String> lines, Memory memory) {
+void _solve(List<String> lines, Memory memory) {
   for (String line in lines) {
     // PARSE
     List<String> parts = line.split(" ");
@@ -65,8 +65,6 @@ int _solve(List<String> lines, Memory memory) {
       }
     }
   }
-
-  return memory._registers.values.fold(0, math.max);
 }
 
 bool _testCondition(int a, String conditionSign, int b) {
