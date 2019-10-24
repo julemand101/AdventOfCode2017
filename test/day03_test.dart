@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 import 'package:AdventOfCode2017/day03.dart';
 
 void main() {
-  group("Part One", () {
+  group('Part One', () {
     test('Example 1', () {
       expect(solveA(1), equals(0));
     });
@@ -35,7 +35,7 @@ void main() {
     });
   });
 
-  group("Part Two", () {
+  group('Part Two', () {
     test('Example 1', () {
       expect(solveB(3), equals(4));
     });

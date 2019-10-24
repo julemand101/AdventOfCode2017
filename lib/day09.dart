@@ -12,17 +12,17 @@ int solveA(String input) {
   int pointLevel = 0;
   int points = 0;
 
-  String garbageFreeInput = _removeGarbage(input).result;
+  final garbageFreeInput = _removeGarbage(input).result;
 
-  for (int i = 0; i < garbageFreeInput.length; i++) {
-    String char = garbageFreeInput[i];
+  for (var i = 0; i < garbageFreeInput.length; i++) {
+    final char = garbageFreeInput[i];
 
-    if (char == "{") {
+    if (char == '{') {
       pointLevel++;
-    } else if (char == "}") {
+    } else if (char == '}') {
       points += pointLevel--;
     } else {
-      throw "Unknown char: $char";
+      throw Exception('Unknown char: $char');
     }
   }
 
@@ -34,16 +34,16 @@ int solveB(String input) {
 }
 
 GarbageResult _removeGarbage(String input) {
-  StringBuffer buffer = new StringBuffer();
+  final buffer = StringBuffer();
   int count = 0;
   int pos = 0;
 
   while (pos < input.length) {
-    String char = input[pos];
+    final char = input[pos];
 
-    if (char == "<") {
-      while (input[pos] != ">") {
-        if (input[pos] == "!") {
+    if (char == '<') {
+      while (input[pos] != '>') {
+        if (input[pos] == '!') {
           pos += 2;
         } else {
           count++;
@@ -52,12 +52,12 @@ GarbageResult _removeGarbage(String input) {
       }
       count--;
       pos++;
-    } else if (char == ",") {
+    } else if (char == ',') {
       pos++;
     } else {
       buffer.write(input[pos++]);
     }
   }
 
-  return new GarbageResult(buffer.toString(), count);
+  return GarbageResult(buffer.toString(), count);
 }

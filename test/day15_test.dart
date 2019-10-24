@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 import 'package:AdventOfCode2017/day15.dart';
 
 void main() {
-  group("Part One", () {
+  group('Part One', () {
     test('Example 1', () {
       expect(solveA(65, 8921), equals(588));
     });
@@ -16,7 +16,7 @@ void main() {
     });
   });
 
-  group("Part Two", () {
+  group('Part Two', () {
     test('Example 1', () {
       expect(solveB(65, 8921), equals(309));
     });

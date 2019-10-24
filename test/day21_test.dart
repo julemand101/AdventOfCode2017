@@ -5,22 +5,22 @@ import 'dart:io';
 import 'package:test/test.dart';
 import 'package:AdventOfCode2017/day21.dart';
 
-const String DATA_FILE_PATH = "test/data/day21.txt";
+const String DATA_FILE_PATH = 'test/data/day21.txt';
 
 final List<String> EXAMPLE = [
-  "../.# => ##./#../...",
-  ".#./..#/### => #..#/..../..../#..#"
+  '../.# => ##./#../...',
+  '.#./..#/### => #..#/..../..../#..#'
 ];
 
 void main() {
-  group("Part One", () {
+  group('Part One', () {
     test('Example 1', () {
       expect(solve(EXAMPLE, 2), equals(12));
     });
     test('Solution', () {
       expect(
           solve(
-              new File(DATA_FILE_PATH)
+              File(DATA_FILE_PATH)
                   .readAsLinesSync()
                   .where((line) => line.trim().isNotEmpty)
                   .toList(growable: false),
@@ -29,11 +29,11 @@ void main() {
     });
   });
 
-  group("Part Two", () {
+  group('Part Two', () {
     test('Solution', () {
       expect(
           solve(
-              new File(DATA_FILE_PATH)
+              File(DATA_FILE_PATH)
                   .readAsLinesSync()
                   .where((line) => line.trim().isNotEmpty)
                   .toList(growable: false),

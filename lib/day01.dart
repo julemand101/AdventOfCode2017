@@ -1,7 +1,7 @@
 // --- Day 1: Inverse Captcha ---
 // https://adventofcode.com/2017/day/1
 
-typedef bool Tester(String input, int pos);
+typedef Tester = bool Function(String input, int pos);
 
 int solveA(String input) {
   return _solve(input, _testA);

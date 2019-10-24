@@ -2,29 +2,27 @@
 // https://adventofcode.com/2017/day/7
 
 String solveA(List<String> lines) {
-  var list = lines.where((line) => line.contains("->")).toList(growable: false);
+  final possibleTopNodes = <String>[];
+  final nodes = <String>[];
 
-  var possibleTopNodes = new List();
-  var nodes = new List();
-
-  for (String line in list) {
-    List<String> split = line.split(" -> ");
+  for (final line in lines.where((line) => line.contains("->"))) {
+    final split = line.split(" -> ");
     possibleTopNodes.add(split[0].split(" (")[0]);
     nodes.addAll(split[1].split(", "));
   }
 
-  for (String node in possibleTopNodes) {
+  for (final node in possibleTopNodes) {
     if (!nodes.contains(node)) {
       return node;
     }
   }
 
-  throw "This should not happen!";
+  throw Exception('This should not happen!');
 }
 
 class Node {
   int _weight;
-  final List<Node> children = new List();
+  final List<Node> children = [];
 
   Node(this._weight);
 
@@ -36,26 +34,26 @@ class Node {
 }
 
 int solveB(List<String> lines) {
-  Map<String, Node> nodeCache = new Map();
+  final nodeCache = <String, Node>{};
 
-  for (String line in lines) {
-    var split = line.split(" (");
-    var name = split[0];
-    var weight = int.parse(split[1].split(")")[0]);
+  for (final line in lines) {
+    final split = line.split(" (");
+    final name = split[0];
+    final weight = int.parse(split[1].split(")")[0]);
 
     if (nodeCache.containsKey(name)) {
       nodeCache[name]._weight = weight;
     } else {
-      nodeCache[name] = new Node(weight);
+      nodeCache[name] = Node(weight);
     }
 
     if (line.contains(" -> ")) {
-      var split = line.split(" -> ");
+      final split = line.split(" -> ");
       nodeCache[name].addNodes(split[1].split(", ").map((String nodeName) {
         if (nodeCache.containsKey(nodeName)) {
           return nodeCache[nodeName];
         } else {
-          var node = new Node(-1);
+          final node = Node(-1);
           nodeCache[nodeName] = node;
           return node;
         }
@@ -67,14 +65,14 @@ int solveB(List<String> lines) {
 }
 
 int _findWeight(Node input) {
-  Map<int, List<Node>> map = new Map();
+  final map = <int, List<Node>>{};
 
-  for (Node node in input.children) {
-    int weight = node.weight;
+  for (final node in input.children) {
+    final weight = node.weight;
     if (map.containsKey(weight)) {
       map[weight].add(node);
     } else {
-      map[weight] = new List()..add(node);
+      map[weight] = [node];
     }
   }
 
@@ -82,14 +80,14 @@ int _findWeight(Node input) {
     return -1;
   }
 
-  var oddNode = map.values.singleWhere((list) => list.length == 1).first;
+  final oddNode = map.values.singleWhere((list) => list.length == 1).first;
 
-  int result = _findWeight(oddNode);
+  final result = _findWeight(oddNode);
 
   if (result != -1) {
     return result;
   } else {
-    int a = map.values.singleWhere((list) => list.length > 1).first.weight;
+    final a = map.values.singleWhere((list) => list.length > 1).first.weight;
 
     return oddNode._weight + (a - oddNode.weight);
   }

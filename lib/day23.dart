@@ -2,39 +2,39 @@
 // https://adventofcode.com/2017/day/23
 
 int solveA(List<String> program) {
-  Map<String, int> registers = {
-    "a": 0,
-    "b": 0,
-    "c": 0,
-    "d": 0,
-    "e": 0,
-    "f": 0,
-    "g": 0,
-    "h": 0,
+  final registers = {
+    'a': 0,
+    'b': 0,
+    'c': 0,
+    'd': 0,
+    'e': 0,
+    'f': 0,
+    'g': 0,
+    'h': 0,
   };
 
   int mulCalls = 0;
 
   for (int i = 0; i < program.length; i++) {
-    String instruction = program[i];
-    List<String> parts = instruction.split(" ");
-    String opcode = parts[0];
-    String x = parts[1];
-    int y = getValue(registers, parts[2]);
+    final instruction = program[i];
+    final parts = instruction.split(' ');
+    final opcode = parts[0];
+    final x = parts[1];
+    final y = getValue(registers, parts[2]);
 
-    if (opcode == "set") {
+    if (opcode == 'set') {
       registers[x] = y;
-    } else if (opcode == "sub") {
+    } else if (opcode == 'sub') {
       registers[x] -= y;
-    } else if (opcode == "mul") {
+    } else if (opcode == 'mul') {
       registers[x] *= y;
       mulCalls++;
-    } else if (opcode == "jnz") {
+    } else if (opcode == 'jnz') {
       if (registers[x] != 0) {
         i += y - 1;
       }
     } else {
-      throw "Unknown instruction: $instruction";
+      throw Exception('Unknown instruction: $instruction');
     }
   }
 
@@ -42,7 +42,7 @@ int solveA(List<String> program) {
 }
 
 // Manually optimized
-int solveB(_) {
+int solveB(Object _) {
   var h = 0;
 
   for (var b = 105700; b <= 122700; b += 17) {

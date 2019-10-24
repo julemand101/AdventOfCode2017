@@ -1,39 +1,35 @@
 // --- Day 13: Packet Scanners ---
 // https://adventofcode.com/2017/day/13
 
-import 'dart:io';
 import 'dart:async';
+import 'dart:io';
 import 'dart:isolate';
 import 'dart:math' as math;
 
 int solveA(Iterable<String> inputs) {
-  Map<int, int> map = _parse(inputs);
-  return _solve(map);
+  return _solve(_parse(inputs));
 }
 
 int solveB(Iterable<String> inputs) {
-  Map<int, int> map = _parse(inputs);
-  int delay = 0;
+  var delay = 0;
 
-  while (true) {
-    if (_solve(map, startTime: delay, stopWhenCaught: true) == 0) {
-      return delay;
-    } else {
-      delay++;
-    }
+  while (_solve(_parse(inputs), startTime: delay, stopWhenCaught: true) != 0) {
+    delay++;
   }
+
+  return delay;
 }
 
 Future<int> solveB_with_isolates(Iterable<String> inputs, int chunkSize) {
-  Completer<int> completer = new Completer();
-  Map<int, int> map = _parse(inputs);
-  int delay = 0;
-  int lowestResult = -1;
-  int numberOfActiveIsolates = Platform.numberOfProcessors + 1;
+  final completer = Completer<int>();
+  final map = _parse(inputs);
+  var delay = 0;
+  var lowestResult = -1;
+  var numberOfActiveIsolates = Platform.numberOfProcessors + 1;
 
-  RawReceivePort rport = new RawReceivePort((List input) {
-    int result = input[0];
-    SendPort sport = input[1];
+  final rport = RawReceivePort((List<Object> input) {
+    final result = input[0] as int;
+    final sport = input[1] as SendPort;
 
     if (result == -1) {
       if (lowestResult == -1) {
@@ -61,14 +57,14 @@ Future<int> solveB_with_isolates(Iterable<String> inputs, int chunkSize) {
   return completer.future;
 }
 
-void _work(List args) {
-  Map<int, int> map = args[0];
-  SendPort sport = args[1];
+void _work(List<Object> args) {
+  final map = args[0] as Map<int, int>;
+  final sport = args[1] as SendPort;
 
-  RawReceivePort rport = new RawReceivePort();
-  rport.handler = ((List input) {
-    int from = input[0];
-    int to = input[1];
+  final rport = RawReceivePort();
+  rport.handler = (List<int> input) {
+    final from = input[0];
+    final to = input[1];
 
     if (from == -1 || to == -1) {
       rport.close();
@@ -84,21 +80,22 @@ void _work(List args) {
     }
 
     sport.send([-1, rport.sendPort]);
-  });
+  };
 
   sport.send([-1, rport.sendPort]);
 }
 
-int _solve(Map<int, int> map, {startTime: 0, stopWhenCaught: false}) {
-  int max = map.keys.reduce(math.max);
+int _solve(Map<int, int> map,
+    {int startTime = 0, bool stopWhenCaught = false}) {
+  final max = map.keys.reduce(math.max);
   int score = 0;
 
   for (int depth = 0; depth <= max; depth++) {
     if (map.containsKey(depth)) {
-      int range = map[depth];
+      final range = map[depth];
 
       if (_move(depth + startTime, range) == 0) {
-        score += (depth * range);
+        score += depth * range;
 
         if (stopWhenCaught) {
           return 1;
@@ -111,12 +108,12 @@ int _solve(Map<int, int> map, {startTime: 0, stopWhenCaught: false}) {
 }
 
 Map<int, int> _parse(Iterable<String> inputs) {
-  Map<int, int> map = new Map();
+  final map = <int, int>{};
 
-  for (String input in inputs) {
-    var parts = input.split(": "); // e.g. "0: 3"
-    int depth = int.parse(parts[0]);
-    int range = int.parse(parts[1]);
+  for (final input in inputs) {
+    final parts = input.split(": "); // e.g. "0: 3"
+    final depth = int.parse(parts[0]);
+    final range = int.parse(parts[1]);
 
     map[depth] = range;
   }

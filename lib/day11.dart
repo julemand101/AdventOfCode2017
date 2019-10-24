@@ -19,11 +19,11 @@ int solveB(List<String> steps) {
 }
 
 HexEdResult _solve(List<String> steps) {
-  int x = 0;
-  int y = 0;
-  int maxDistance = 0;
+  var x = 0;
+  var y = 0;
+  var maxDistance = 0;
 
-  for (String step in steps) {
+  for (final step in steps) {
     switch (step) {
       case 'n':
         y++;
@@ -46,14 +46,14 @@ HexEdResult _solve(List<String> steps) {
         y++;
         break;
       default:
-        throw "Unknown step: $step";
+        throw Exception('Unknown step: $step');
     }
 
     maxDistance = math.max(maxDistance, _calcDistance(x, y));
   }
 
-  return new HexEdResult(_calcDistance(x, y), maxDistance);
+  return HexEdResult(_calcDistance(x, y), maxDistance);
 }
 
-_calcDistance(int x, int y) =>
+int _calcDistance(int x, int y) =>
     math.max(x.abs(), math.max(y.abs(), (x + y).abs()));

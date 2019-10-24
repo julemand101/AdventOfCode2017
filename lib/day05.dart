@@ -1,7 +1,8 @@
 // --- Day 5: A Maze of Twisty Trampolines, All Alike ---
 // https://adventofcode.com/2017/day/5
 
-typedef int NextPositionCalculator(List<int> instructions, int position);
+typedef NextPositionCalculator = int Function(
+    List<int> instructions, int position);
 
 int solveA(List<int> input) {
   return _solve(
@@ -21,7 +22,7 @@ int solveB(List<int> input) {
 int _solve(List<int> instructions, NextPositionCalculator nextPosition) {
   int count = 0;
 
-  for (int pos = 0; (pos >= 0 && pos < instructions.length); count++) {
+  for (int pos = 0; pos >= 0 && pos < instructions.length; count++) {
     pos = nextPosition(instructions, pos);
   }
 

@@ -1,7 +1,7 @@
 // --- Day 22: Sporifica Virus ---
 // https://adventofcode.com/2017/day/22
 
-typedef void VirusCall(Virus virus);
+typedef VirusCall = void Function(Virus virus);
 
 int solveA(List<String> mapList, int burstsOfActivity) {
   return solve(mapList, burstsOfActivity, (virus) => virus.burstA());
@@ -12,8 +12,8 @@ int solveB(List<String> mapList, int burstsOfActivity) {
 }
 
 int solve(List<String> mapList, int burstsOfActivity, VirusCall virusCall) {
-  InfectionMap map = new InfectionMap(mapList);
-  Virus virus = new Virus(mapList.length, map);
+  final map = InfectionMap(mapList);
+  final virus = Virus(mapList.length, map);
 
   for (int i = 0; i < burstsOfActivity; i++) {
     virusCall(virus);
@@ -43,17 +43,15 @@ class Virus {
         this.y = (mapSize / 2).floor();
 
   void burstA() {
-    bool isCurrentNodeInfected = map.isInfected(x, y);
+    final isCurrentNodeInfected = map.isInfected(x, y);
 
     if (isCurrentNodeInfected) {
       turnRight();
-    } else {
-      turnLeft();
-    }
 
-    if (isCurrentNodeInfected) {
       map.clean(x, y);
     } else {
+      turnLeft();
+
       map.infect(x, y);
       infectCount++;
     }
@@ -62,7 +60,7 @@ class Virus {
   }
 
   void burstB() {
-    State currentState = map.getState(x, y);
+    final currentState = map.getState(x, y);
 
     switch (currentState) {
       case State.clean:
@@ -79,7 +77,7 @@ class Virus {
         break;
     }
 
-    State newState = stateTransform[currentState];
+    final newState = stateTransform[currentState];
     map.setState(x, y, newState);
     if (newState == State.infected) {
       infectCount++;
@@ -160,14 +158,14 @@ class Virus {
 enum State { clean, weakened, infected, flagged }
 
 class InfectionMap {
-  Map<int, State> _infected = new Map(); // element not in map == clean
+  final _infected = <int, State>{}; // element not in map == clean
 
   InfectionMap(List<String> mapList) {
-    for (int y = 0; y < mapList.length; y++) {
-      String line = mapList[y];
+    for (var y = 0; y < mapList.length; y++) {
+      final line = mapList[y];
 
-      for (int x = 0; x < line.length; x++) {
-        if (line[x] == "#") {
+      for (var x = 0; x < line.length; x++) {
+        if (line[x] == '#') {
           infect(x, y);
         }
       }
@@ -191,12 +189,12 @@ class InfectionMap {
   bool isInfected(int x, int y) => _infected[_xyToInt(x, y)] == State.infected;
 
   // https://stackoverflow.com/a/919661
-  int _xyToInt(int x, int y) {
-    x = f(x);
-    y = f(y);
+  int _xyToInt(int xIn, int yIn) {
+    final x = f(xIn);
+    final y = f(yIn);
 
     return ((x + y) * (x + y + 1) ~/ 2) + y;
   }
 
-  int f(n) => (n >= 0) ? n * 2 : (-n * 2) - 1;
+  int f(int n) => (n >= 0) ? n * 2 : (-n * 2) - 1;
 }

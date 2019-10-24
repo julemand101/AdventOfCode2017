@@ -3,14 +3,14 @@
 
 import 'package:collection/collection.dart';
 
-final ListEquality listEquality = new ListEquality();
+const ListEquality<int> listEquality = ListEquality();
 
 int solveA(List<int> banks) {
   return _solve(banks).length;
 }
 
 int solveB(List<int> banks) {
-  List<List<int>> history = _solve(banks);
+  final history = _solve(banks);
 
   for (int i = 0; i < history.length; i++) {
     if (listEquality.equals(history[i], history.last)) {
@@ -18,29 +18,25 @@ int solveB(List<int> banks) {
     }
   }
 
-  throw ("Something's wrong with the loop!");
+  throw Exception('Somethings wrong with the loop!');
 }
 
 List<List<int>> _solve(List<int> banks) {
-  List<List<int>> history = new List();
-  List<int> next = banks;
+  final history = <List<int>>[];
+  var next = _nextBanksState(banks);
 
-  while (true) {
+  while (!history.any((List<int> prev) => listEquality.equals(next, prev))) {
+    history.add(next);
     next = _nextBanksState(next);
-
-    if (history.any((List<int> prev) => listEquality.equals(next, prev))) {
-      history.add(next);
-      return history;
-    } else {
-      history.add(next);
-    }
   }
+
+  return history..add(next);
 }
 
 List<int> _nextBanksState(List<int> banks) {
-  List<int> nextBanksState = new List.from(banks, growable: false);
-  int bankToEmpty = _findNextBankToEmpty(nextBanksState);
-  int blocks = nextBanksState[bankToEmpty];
+  final nextBanksState = banks.toList(growable: false);
+  final bankToEmpty = _findNextBankToEmpty(nextBanksState);
+  var blocks = nextBanksState[bankToEmpty];
 
   nextBanksState[bankToEmpty] = 0;
 

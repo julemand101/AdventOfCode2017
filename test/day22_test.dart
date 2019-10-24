@@ -5,12 +5,12 @@ import 'dart:io';
 import 'package:test/test.dart';
 import 'package:AdventOfCode2017/day22.dart';
 
-const String DATA_FILE_PATH = "test/data/day22.txt";
+const String DATA_FILE_PATH = 'test/data/day22.txt';
 
-final List<String> EXAMPLE = ["..#", "#..", "..."];
+final List<String> EXAMPLE = ['..#', '#..', '...'];
 
 void main() {
-  group("Part One", () {
+  group('Part One', () {
     test('Example 1', () {
       expect(solveA(EXAMPLE, 0), equals(0));
     });
@@ -29,7 +29,7 @@ void main() {
     test('Solution', () {
       expect(
           solveA(
-              new File(DATA_FILE_PATH)
+              File(DATA_FILE_PATH)
                   .readAsLinesSync()
                   .where((line) => line.trim().isNotEmpty)
                   .toList(growable: false),
@@ -37,7 +37,7 @@ void main() {
           equals(5433));
     });
   });
-  group("Part Two", () {
+  group('Part Two', () {
     test('Example 1', () {
       expect(solveB(EXAMPLE, 100), equals(26));
     });
@@ -47,7 +47,7 @@ void main() {
     test('Solution', () {
       expect(
           solveB(
-              new File(DATA_FILE_PATH)
+              File(DATA_FILE_PATH)
                   .readAsLinesSync()
                   .where((line) => line.trim().isNotEmpty)
                   .toList(growable: false),

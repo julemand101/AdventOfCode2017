@@ -7,7 +7,7 @@ import 'package:AdventOfCode2017/day17.dart';
 const PUZZLE_INPUT = 370;
 
 void main() {
-  group("Part One", () {
+  group('Part One', () {
     test('Example 1', () {
       expect(solveA(3), equals(638));
     });
@@ -16,7 +16,7 @@ void main() {
     });
   });
 
-  group("Part Two", () {
+  group('Part Two', () {
     test('Solution', () {
       expect(solveB(PUZZLE_INPUT), equals(11162912));
     });

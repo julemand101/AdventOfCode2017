@@ -2,8 +2,8 @@
 // https://adventofcode.com/2017/day/17
 
 int solveA(int stepsForward) {
-  List<int> buffer = new List();
-  int current_position = 0;
+  final buffer = <int>[];
+  var current_position = 0;
   buffer.add(0);
 
   for (int i = 1; i <= 2017; i++) {

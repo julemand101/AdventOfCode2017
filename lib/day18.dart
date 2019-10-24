@@ -7,9 +7,9 @@ class Memory {
   int _sendCounter = 0;
   final Queue<int> _inQueue;
   final Queue<int> _outQueue;
-  final Map<String, int> _registers = new Map();
+  final Map<String, int> _registers = {};
 
-  Memory([this._inQueue = null, this._outQueue = null]);
+  Memory([this._inQueue, this._outQueue]);
 
   void setRegister(String register, int value) {
     _registers[register] = value;
@@ -23,7 +23,7 @@ class Memory {
     }
   }
 
-  int getValue(var value) => int.tryParse(value) ?? getRegister(value);
+  int getValue(String value) => int.tryParse(value) ?? getRegister(value);
 
   void send(int value) {
     _outQueue.add(value);
@@ -37,36 +37,36 @@ class Memory {
 
 int solveA(List<String> instructions) {
   int last_played_frequency = 0;
-  Memory mem = new Memory();
+  final mem = Memory();
 
   for (int i = 0; i < instructions.length; i++) {
-    String instruction = instructions[i];
-    List<String> parts = instruction.split(" ");
-    String opcode = parts[0];
-    String x = parts[1];
-    String y = parts.length == 3 ? parts[2] : null;
+    final instruction = instructions[i];
+    final parts = instruction.split(" ");
+    final opcode = parts[0];
+    final x = parts[1];
+    final y = parts.length == 3 ? parts[2] : null;
 
-    if (opcode == "snd") {
+    if (opcode == 'snd') {
       last_played_frequency = mem.getValue(x);
-    } else if (opcode == "set") {
+    } else if (opcode == 'set') {
       mem.setRegister(x, mem.getValue(y));
-    } else if (opcode == "add") {
+    } else if (opcode == 'add') {
       mem.setRegister(x, mem.getRegister(x) + mem.getValue(y));
-    } else if (opcode == "mul") {
+    } else if (opcode == 'mul') {
       mem.setRegister(x, mem.getRegister(x) * mem.getValue(y));
-    } else if (opcode == "mod") {
+    } else if (opcode == 'mod') {
       mem.setRegister(x, mem.getRegister(x) % mem.getValue(y));
-    } else if (opcode == "rcv") {
+    } else if (opcode == 'rcv') {
       if (mem.getValue(x) != 0) {
         break;
       }
-    } else if (opcode == "jgz") {
+    } else if (opcode == 'jgz') {
       if (mem.getValue(x) > 0) {
         i += mem.getValue(y) - 1;
         continue;
       }
     } else {
-      throw "Unknown instruction: $instruction";
+      throw Exception('Unknown instruction: $instruction');
     }
   }
 
@@ -74,14 +74,14 @@ int solveA(List<String> instructions) {
 }
 
 int solveB(List<String> instructions) {
-  Queue<int> qA = new Queue();
-  Queue<int> qB = new Queue();
+  final qA = Queue<int>();
+  final qB = Queue<int>();
 
-  Memory memA = new Memory(qB, qA)..setRegister("p", 0);
-  Memory memB = new Memory(qA, qB)..setRegister("p", 1);
+  final memA = Memory(qB, qA)..setRegister('p', 0);
+  final memB = Memory(qA, qB)..setRegister('p', 1);
 
-  Iterator iA = runProgram(instructions, memA).iterator;
-  Iterator iB = runProgram(instructions, memB).iterator;
+  final iA = runProgram(instructions, memA).iterator;
+  final iB = runProgram(instructions, memB).iterator;
 
   bool statusA, statusB;
   do {
@@ -94,34 +94,34 @@ int solveB(List<String> instructions) {
 
 Iterable runProgram(List<String> instructions, Memory mem) sync* {
   for (int i = 0; i < instructions.length; i++) {
-    String instruction = instructions[i];
-    List<String> parts = instruction.split(" ");
-    String opcode = parts[0];
-    String x = parts[1];
-    String y = parts.length == 3 ? parts[2] : null;
+    final instruction = instructions[i];
+    final parts = instruction.split(" ");
+    final opcode = parts[0];
+    final x = parts[1];
+    final y = parts.length == 3 ? parts[2] : null;
 
-    if (opcode == "snd") {
+    if (opcode == 'snd') {
       mem.send(mem.getValue(x));
-    } else if (opcode == "set") {
+    } else if (opcode == 'set') {
       mem.setRegister(x, mem.getValue(y));
-    } else if (opcode == "add") {
+    } else if (opcode == 'add') {
       mem.setRegister(x, mem.getRegister(x) + mem.getValue(y));
-    } else if (opcode == "mul") {
+    } else if (opcode == 'mul') {
       mem.setRegister(x, mem.getRegister(x) * mem.getValue(y));
-    } else if (opcode == "mod") {
+    } else if (opcode == 'mod') {
       mem.setRegister(x, mem.getRegister(x) % mem.getValue(y));
-    } else if (opcode == "rcv") {
+    } else if (opcode == 'rcv') {
       while (!mem.canReceive) {
         yield null;
       }
       mem.setRegister(x, mem.receive());
-    } else if (opcode == "jgz") {
+    } else if (opcode == 'jgz') {
       if (mem.getValue(x) > 0) {
         i += mem.getValue(y) - 1;
         continue;
       }
     } else {
-      throw "Unknown instruction: $instruction";
+      throw Exception('Unknown instruction: $instruction');
     }
   }
 }

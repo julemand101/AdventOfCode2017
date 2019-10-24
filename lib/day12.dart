@@ -3,7 +3,7 @@
 
 class Program {
   final String name;
-  final List<Program> programs = new List();
+  final List<Program> programs = [];
 
   Program(this.name);
 
@@ -21,15 +21,15 @@ class Program {
 }
 
 int solveA(Iterable<String> pipes) {
-  return _solve(pipes)["0"].visit(new Set());
+  return _solve(pipes)['0'].visit({});
 }
 
 int solveB(Iterable<String> pipes) {
-  Map<String, Program> cache = _solve(pipes);
+  final cache = _solve(pipes);
 
   int count = 0;
-  while (cache.length > 0) {
-    Set<String> history = new Set();
+  while (cache.isNotEmpty) {
+    final history = <String>{};
 
     cache[cache.keys.first].visit(history);
     history.forEach((name) => cache.remove(name));
@@ -41,17 +41,17 @@ int solveB(Iterable<String> pipes) {
 }
 
 Map<String, Program> _solve(Iterable<String> pipes) {
-  Map<String, Program> cache = new Map();
+  final cache = <String, Program>{};
 
-  for (String pipe in pipes) {
-    var parts = pipe.split(" <-> ");
-    var from = parts[0];
-    var tos = parts[1].split(", ");
+  for (final pipe in pipes) {
+    final parts = pipe.split(' <-> ');
+    final from = parts[0];
+    final tos = parts[1].split(', ');
 
-    Program fromProgram = _getProgram(cache, from);
+    final fromProgram = _getProgram(cache, from);
 
-    for (String to in tos) {
-      Program toProgram = _getProgram(cache, to);
+    for (final to in tos) {
+      final toProgram = _getProgram(cache, to);
       fromProgram.addProgram(toProgram);
     }
   }
@@ -62,7 +62,7 @@ Map<String, Program> _solve(Iterable<String> pipes) {
 Program _getProgram(Map<String, Program> cache, String name) {
   Program program;
   if (!cache.containsKey(name)) {
-    program = new Program(name);
+    program = Program(name);
     cache[name] = program;
   } else {
     program = cache[name];

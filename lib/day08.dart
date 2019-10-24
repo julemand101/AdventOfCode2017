@@ -5,7 +5,7 @@ import 'dart:math' as math;
 
 class Memory {
   int _maxValue = 0;
-  Map<String, int> _registers = new Map();
+  final Map<String, int> _registers = {};
 
   int operator [](String register) {
     if (_registers.containsKey(register)) {
@@ -15,7 +15,7 @@ class Memory {
     }
   }
 
-  operator []=(String register, int value) {
+  void operator []=(String register, int value) {
     if (value > _maxValue) {
       _maxValue = value;
     }
@@ -26,31 +26,31 @@ class Memory {
 }
 
 int solveA(List<String> lines) {
-  Memory memory = new Memory();
+  final memory = Memory();
   _solve(lines, memory);
 
   return memory._registers.values.fold(0, math.max);
 }
 
 int solveB(List<String> lines) {
-  Memory memory = new Memory();
+  final memory = Memory();
   _solve(lines, memory);
 
   return memory.maxValue;
 }
 
 void _solve(List<String> lines, Memory memory) {
-  for (String line in lines) {
+  for (final line in lines) {
     // PARSE
-    List<String> parts = line.split(" ");
+    final parts = line.split(' ');
 
-    String register = parts[0];
-    String instruction = parts[1]; // 'inc' or 'dec'
-    int value = int.parse(parts[2]);
+    final register = parts[0];
+    final instruction = parts[1]; // 'inc' or 'dec'
+    final value = int.parse(parts[2]);
 
-    int conditionAValue = memory[parts[4]];
-    String conditionSign = parts[5];
-    int conditionBValue = int.parse(parts[6]);
+    final conditionAValue = memory[parts[4]];
+    final conditionSign = parts[5];
+    final conditionBValue = int.parse(parts[6]);
 
     if (_testCondition(conditionAValue, conditionSign, conditionBValue)) {
       switch (instruction) {
@@ -61,7 +61,7 @@ void _solve(List<String> lines, Memory memory) {
           memory[register] -= value;
           break;
         default:
-          throw "Unknown instruction: $instruction";
+          throw Exception('Unknown instruction: $instruction');
       }
     }
   }
@@ -70,18 +70,18 @@ void _solve(List<String> lines, Memory memory) {
 bool _testCondition(int a, String conditionSign, int b) {
   switch (conditionSign) {
     case '==':
-      return (a == b);
+      return a == b;
     case '!=':
-      return (a != b);
+      return a != b;
     case '>':
-      return (a > b);
+      return a > b;
     case '>=':
-      return (a >= b);
+      return a >= b;
     case '<':
-      return (a < b);
+      return a < b;
     case '<=':
-      return (a <= b);
+      return a <= b;
     default:
-      throw "Unknown condition sign: $conditionSign";
+      throw Exception('Unknown condition sign: $conditionSign');
   }
 }

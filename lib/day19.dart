@@ -26,12 +26,12 @@ int solveB(List<String> input) {
 }
 
 Day19Result solve(List<String> input) {
-  List<Uint8List> network = new List();
+  final network = <Uint8List>[];
   int steps = 0;
-  StringBuffer visitedLetters = new StringBuffer();
+  final visitedLetters = StringBuffer();
 
-  for (String line in input) {
-    network.add(new Uint8List.fromList(line.runes.toList()));
+  for (final line in input) {
+    network.add(Uint8List.fromList(line.runes.toList()));
   }
 
   // Find start position
@@ -39,8 +39,9 @@ Day19Result solve(List<String> input) {
   int x = network[y].indexOf(VERTICAL_LINE_RUNE);
   Direction direction = Direction.DOWN;
 
+  // ignore: literal_only_boolean_expressions
   while (true) {
-    int current_char = network[y][x];
+    final current_char = network[y][x];
 
     if (current_char == VERTICAL_LINE_RUNE ||
         current_char == HORIZONTAL_LINE_RUNE) {
@@ -88,5 +89,5 @@ Day19Result solve(List<String> input) {
     steps++;
   }
 
-  return new Day19Result(steps, visitedLetters.toString());
+  return Day19Result(steps, visitedLetters.toString());
 }

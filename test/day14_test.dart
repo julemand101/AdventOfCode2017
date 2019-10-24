@@ -5,21 +5,21 @@ import 'package:test/test.dart';
 import 'package:AdventOfCode2017/day14.dart';
 
 void main() {
-  group("Part One", () {
+  group('Part One', () {
     test('Example 1', () {
-      expect(solveA("flqrgnkx"), equals(8108));
+      expect(solveA('flqrgnkx'), equals(8108));
     });
     test('Solution', () {
-      expect(solveA("ljoxqyyw"), equals(8316));
+      expect(solveA('ljoxqyyw'), equals(8316));
     });
   });
 
-  group("Part Two", () {
+  group('Part Two', () {
     test('Example 1', () {
-      expect(solveB("flqrgnkx"), equals(1242));
+      expect(solveB('flqrgnkx'), equals(1242));
     });
     test('Solution', () {
-      expect(solveB("ljoxqyyw"), equals(1074));
+      expect(solveB('ljoxqyyw'), equals(1074));
     });
   });
 }

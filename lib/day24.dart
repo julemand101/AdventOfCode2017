@@ -5,9 +5,7 @@ int maxBridgeLength = 0;
 int maxBridgeStrength = 0;
 
 int solveA(Iterable<String> input) {
-  List<Component> components =
-      input.map((input) => new Component(input)).toList();
-
+  final components = input.map((input) => Component(input)).toList();
   return getHigestScore(components, 0, 0, 0);
 }
 
@@ -23,11 +21,11 @@ int getHigestScore(List<Component> availableComponents, int end,
   var maxScore = 0;
 
   findNextComponents(availableComponents, end).forEach((component) {
-    List<Component> newAvailableComponents = availableComponents.toList();
+    final newAvailableComponents = availableComponents.toList();
     newAvailableComponents.remove(component);
 
-    var newEnd = component.getOpposite(end);
-    var score = component.score +
+    final newEnd = component.getOpposite(end);
+    final score = component.score +
         getHigestScore(newAvailableComponents, newEnd, bridgeLength + 1,
             sumScore + component.score);
 
@@ -50,7 +48,7 @@ int getHigestScore(List<Component> availableComponents, int end,
 }
 
 Iterable<Component> findNextComponents(Iterable<Component> comps, int end) =>
-    comps.where((comp) => (comp.a == end || comp.b == end));
+    comps.where((comp) => comp.a == end || comp.b == end);
 
 class Component {
   final int a;
@@ -70,7 +68,7 @@ class Component {
     } else if (end == b) {
       return a;
     } else {
-      throw "Should not happen!";
+      throw Exception('Should not happen!');
     }
   }
 }

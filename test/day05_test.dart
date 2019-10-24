@@ -5,17 +5,16 @@ import 'dart:io';
 import 'package:test/test.dart';
 import 'package:AdventOfCode2017/day05.dart';
 
-const String DATA_FILE_PATH = "test/data/day05.txt";
+const String DATA_FILE_PATH = 'test/data/day05.txt';
 
 void main() {
-  group("Part One", () {
+  group('Part One', () {
     test('Example 1', () {
       expect(solveA([0, 3, 0, 1, -3]), equals(5));
     });
     test('Solution', () {
-      File f = new File(DATA_FILE_PATH);
       expect(
-          solveA(f
+          solveA(File(DATA_FILE_PATH)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
               .map((line) => int.parse(line))
@@ -24,14 +23,13 @@ void main() {
     });
   });
 
-  group("Part Two", () {
+  group('Part Two', () {
     test('Example 1', () {
       expect(solveB([0, 3, 0, 1, -3]), equals(10));
     });
     test('Solution', () {
-      File f = new File(DATA_FILE_PATH);
       expect(
-          solveB(f
+          solveB(File(DATA_FILE_PATH)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
               .map((line) => int.parse(line))

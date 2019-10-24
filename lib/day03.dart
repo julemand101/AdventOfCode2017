@@ -25,9 +25,9 @@ int solveA(int input) {
     travelFromCenter = the distance between center to edge in a straight line
    */
 
-  int boxSize = _getBoxSize(input);
-  int minNumberBox = (math.pow((boxSize - 2), 2)) + 1;
-  int travelFromCenter = (boxSize / 2).floor();
+  final boxSize = _getBoxSize(input);
+  final minNumberBox = (math.pow(boxSize - 2, 2)).toInt() + 1;
+  final travelFromCenter = (boxSize / 2).floor();
 
   /* Example of distance map of the outermost edge in previous example:
                 50 51 52 53 54 55 56 57
@@ -46,27 +46,27 @@ int solveA(int input) {
      but we need to calculate the number of columns.
    */
 
-  int columnsInDistanceMap = travelFromCenter * 2;
+  final columnsInDistanceMap = travelFromCenter * 2;
 
   // Calculate which column our input is in the distance map.
-  int xPositionInDistanceMap = (input - minNumberBox) % columnsInDistanceMap;
+  final xPositionInDistanceMap = (input - minNumberBox) % columnsInDistanceMap;
 
   // Get the distance we need to add to the travelFromCenter value.
-  int extraDistance = ((travelFromCenter - 1) - xPositionInDistanceMap).abs();
+  final extraDistance = ((travelFromCenter - 1) - xPositionInDistanceMap).abs();
 
   return travelFromCenter + extraDistance;
 }
 
 int _getBoxSize(int input) {
-  int size = math.sqrt(input).ceil();
+  final size = math.sqrt(input).ceil();
   return (size % 2 == 0) ? size + 1 : size;
 }
 
 int solveB(int input) {
-  Map<Tuple2<int, int>, int> memory = new Map();
+  final memory = <Tuple2<int, int>, int>{};
 
   // Start position
-  Tuple2<int, int> position = new Tuple2(0, 0);
+  var position = const Tuple2(0, 0);
 
   // Initial value
   _setValue(memory, position, 1);
@@ -81,36 +81,36 @@ int solveB(int input) {
 
 Tuple2<int, int> _getNextStep(
     Map<Tuple2<int, int>, int> memory, Tuple2<int, int> pos) {
-  int x = pos.item1;
-  int y = pos.item2;
+  final x = pos.item1;
+  final y = pos.item2;
 
-  bool north = _getValue(memory, x, y + 1) != 0;
-  bool west = _getValue(memory, x - 1, y) != 0;
-  bool east = _getValue(memory, x + 1, y) != 0;
-  bool south = _getValue(memory, x, y - 1) != 0;
+  final north = _getValue(memory, x, y + 1) != 0;
+  final west = _getValue(memory, x - 1, y) != 0;
+  final east = _getValue(memory, x + 1, y) != 0;
+  final south = _getValue(memory, x, y - 1) != 0;
 
   if ((!north && !west && !east && !south) || (north && !south && !east)) {
-    return new Tuple2(x + 1, y); // east
+    return Tuple2(x + 1, y); // east
   }
 
   if (!north && west) {
-    return new Tuple2(x, y + 1); // north
+    return Tuple2(x, y + 1); // north
   }
 
   if (!west && south) {
-    return new Tuple2(x - 1, y); // west
+    return Tuple2(x - 1, y); // west
   }
 
   if (east && !south) {
-    return new Tuple2(x, y - 1); // south
+    return Tuple2(x, y - 1); // south
   }
 
-  throw ("This should never happen!");
+  throw Exception('This should never happen!');
 }
 
 int _get3x3AreaSum(Map<Tuple2<int, int>, int> memory, Tuple2<int, int> pos) {
-  int centerX = pos.item1;
-  int centerY = pos.item2;
+  final centerX = pos.item1;
+  final centerY = pos.item2;
 
   return _getValue(memory, centerX - 1, centerY + 1) +
       _getValue(memory, centerX, centerY + 1) +
@@ -124,7 +124,7 @@ int _get3x3AreaSum(Map<Tuple2<int, int>, int> memory, Tuple2<int, int> pos) {
 }
 
 int _getValue(Map<Tuple2<int, int>, int> memory, int x, int y) {
-  var key = new Tuple2(x, y);
+  final key = Tuple2(x, y);
   return (memory.containsKey(key)) ? memory[key] : 0;
 }
 
@@ -135,7 +135,7 @@ int _getValueByTuple(Map<Tuple2<int, int>, int> memory, Tuple2 key) {
 void _setValue(
     Map<Tuple2<int, int>, int> memory, Tuple2<int, int> pos, int value) {
   if (memory.containsKey(pos)) {
-    throw ("Trying to write $value in $pos");
+    throw Exception('Trying to write $value in $pos');
   }
   memory[pos] = value;
 }

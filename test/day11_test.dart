@@ -5,41 +5,39 @@ import 'dart:io';
 import 'package:test/test.dart';
 import 'package:AdventOfCode2017/day11.dart';
 
-const String DATA_FILE_PATH = "test/data/day11.txt";
+const String DATA_FILE_PATH = 'test/data/day11.txt';
 
 void main() {
-  group("Part One", () {
+  group('Part One', () {
     test('Example 1', () {
-      expect(solveA(["ne", "ne", "ne"]), equals(3));
+      expect(solveA(['ne', 'ne', 'ne']), equals(3));
     });
     test('Example 2', () {
-      expect(solveA(["ne", "ne", "sw", "sw"]), equals(0));
+      expect(solveA(['ne', 'ne', 'sw', 'sw']), equals(0));
     });
     test('Example 3', () {
-      expect(solveA(["ne", "ne", "s", "s"]), equals(2));
+      expect(solveA(['ne', 'ne', 's', 's']), equals(2));
     });
     test('Example 4', () {
-      expect(solveA(["se", "sw", "se", "sw", "sw"]), equals(3));
+      expect(solveA(['se', 'sw', 'se', 'sw', 'sw']), equals(3));
     });
     test('Solution', () {
-      File f = new File(DATA_FILE_PATH);
       expect(
-          solveA(f
+          solveA(File(DATA_FILE_PATH)
               .readAsLinesSync()
               .firstWhere((line) => line.trim().isNotEmpty)
-              .split(",")),
+              .split(',')),
           equals(664));
     });
   });
 
-  group("Part Two", () {
+  group('Part Two', () {
     test('Solution', () {
-      File f = new File(DATA_FILE_PATH);
       expect(
-          solveB(f
+          solveB(File(DATA_FILE_PATH)
               .readAsLinesSync()
               .firstWhere((line) => line.trim().isNotEmpty)
-              .split(",")),
+              .split(',')),
           equals(1447));
     });
   });

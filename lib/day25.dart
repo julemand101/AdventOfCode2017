@@ -2,59 +2,57 @@
 // https://adventofcode.com/2017/day/25
 
 int solve(Iterable<String> input) {
-  Map<String, Rule> rules = new Map();
+  final rules = <String, Rule>{};
   String state;
   int checksum;
 
   // Parse
-  Iterator<String> iter = input.iterator;
+  final iter = input.iterator;
   while (iter.moveNext()) {
     String line = iter.current;
 
-    if (line.startsWith("Begin in state ")) {
-      state = line["Begin in state ".length];
-    } else if (line.startsWith("Perform a diagnostic checksum after ")) {
-      checksum = int.parse(line.split(" ")[5]);
-    } else if (line.startsWith("In state ")) {
-      String state = line["In state ".length];
-      Rule rule = new Rule();
+    if (line.startsWith('Begin in state ')) {
+      state = line['Begin in state '.length];
+    } else if (line.startsWith('Perform a diagnostic checksum after ')) {
+      checksum = int.parse(line.split(' ')[5]);
+    } else if (line.startsWith('In state ')) {
+      final state = line['In state '.length];
+      final rule = Rule();
 
       //   If the current value is 0:
       line = next(iter);
       //     - Write the value 1.
       line = next(iter);
-      rule.value0write =
-          (int.parse(line["    - Write the value ".length]) == 1);
+      rule.value0write = int.parse(line['    - Write the value '.length]) == 1;
       //     - Move one slot to the right.
       line = next(iter);
-      rule.value0cursorMove = (line.contains("right")) ? 1 : -1;
+      rule.value0cursorMove = (line.contains('right')) ? 1 : -1;
       //     - Continue with state B.
       line = next(iter);
-      rule.value0state = line["    - Continue with state ".length];
+      rule.value0state = line['    - Continue with state '.length];
 
       //   If the current value is 1:
       line = next(iter);
       //     - Write the value 1.
       line = next(iter);
-      rule.value1write =
-          (int.parse(line["    - Write the value ".length]) == 1);
+      rule.value1write = int.parse(line['    - Write the value '.length]) == 1;
       //     - Move one slot to the right.
       line = next(iter);
-      rule.value1cursorMove = (line.contains("right")) ? 1 : -1;
+      rule.value1cursorMove = (line.contains('right')) ? 1 : -1;
       //     - Continue with state B.
       line = next(iter);
-      rule.value1state = line["    - Continue with state ".length];
+      rule.value1state = line['    - Continue with state '.length];
 
       rules[state] = rule;
     }
   }
 
-  int cursor = 0;
-  Tape tape = new Tape();
+  var cursor = 0;
+  final tape = Tape();
 
   for (int step = 0; step < checksum; step++) {
-    Rule rule = rules[state];
-    bool currentValue = tape[cursor];
+    final rule = rules[state];
+    final currentValue = tape[cursor];
 
     tape[cursor] = rule.write(currentValue);
     cursor += rule.cursorMove(currentValue);
@@ -66,19 +64,19 @@ int solve(Iterable<String> input) {
 
 String next(Iterator<String> iter) {
   if (!iter.moveNext()) {
-    throw "Fail!";
+    throw Exception('Fail!');
   } else {
     return iter.current;
   }
 }
 
 class Tape {
-  Set<int> tape = new Set();
+  Set<int> tape = {};
 
   bool operator [](int key) => tape.contains(key);
 
   void operator []=(int key, bool value) =>
-      (value) ? tape.add(key) : tape.remove(key);
+      value ? tape.add(key) : tape.remove(key);
 
   int get checksum => tape.length;
 }

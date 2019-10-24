@@ -1,7 +1,7 @@
 // --- Day 4: High-Entropy Passphrases ---
 // https://adventofcode.com/2017/day/4
 
-typedef bool PassphraseValidator(String passphrase);
+typedef PassphraseValidator = bool Function(String passphrase);
 
 int solveA(List<String> passphrases) {
   return _solve(passphrases, _containsNoDuplicatedWords);
@@ -19,9 +19,9 @@ int _solve(List<String> passphrases, PassphraseValidator validate) {
 }
 
 bool _containsNoDuplicatedWords(String passphrase) {
-  Set<String> set = new Set();
+  final set = <String>{};
 
-  for (String word in passphrase.split(" ")) {
+  for (final word in passphrase.split(" ")) {
     if (set.contains(word)) {
       return false;
     } else {
@@ -33,9 +33,9 @@ bool _containsNoDuplicatedWords(String passphrase) {
 }
 
 bool _containsNoAnagrams(String passphrase) {
-  List<String> words = new List();
+  final words = <String>[];
 
-  for (String word in passphrase.split(" ")) {
+  for (final word in passphrase.split(' ')) {
     if (words.any((String x) => _isAnagram(x, word))) {
       return false;
     } else {
@@ -48,8 +48,8 @@ bool _containsNoAnagrams(String passphrase) {
 
 bool _isAnagram(String word1, String word2) {
   if (word1.length == word2.length) {
-    List<String> word2AsList =
-        new List.generate(word2.length, (int index) => word2[index]);
+    final word2AsList =
+        List.generate(word2.length, (int index) => word2[index]);
 
     for (int i = 0; i < word1.length; i++) {
       if (!word2AsList.contains(word1[i])) {

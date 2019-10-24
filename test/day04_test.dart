@@ -5,44 +5,42 @@ import 'dart:io';
 import 'package:test/test.dart';
 import 'package:AdventOfCode2017/day04.dart';
 
-const String DATA_FILE_PATH = "test/data/day04.txt";
+const String DATA_FILE_PATH = 'test/data/day04.txt';
 
 void main() {
-  group("Part One", () {
+  group('Part One', () {
     test('Example 1', () {
-      expect(solveA(["aa bb cc dd ee"]), equals(1)); // valid
+      expect(solveA(['aa bb cc dd ee']), equals(1)); // valid
     });
     test('Example 2', () {
-      expect(solveA(["aa bb cc dd aa"]), equals(0)); // invalid
+      expect(solveA(['aa bb cc dd aa']), equals(0)); // invalid
     });
     test('Example 3', () {
-      expect(solveA(["aa bb cc dd aaa"]), equals(1)); // valid
+      expect(solveA(['aa bb cc dd aaa']), equals(1)); // valid
     });
     test('Solution', () {
-      File f = new File(DATA_FILE_PATH);
-      expect(solveA(f.readAsLinesSync()), equals(386));
+      expect(solveA(File(DATA_FILE_PATH).readAsLinesSync()), equals(386));
     });
   });
 
-  group("Part Two", () {
+  group('Part Two', () {
     test('Example 1', () {
-      expect(solveB(["abcde fghij"]), equals(1)); // valid
+      expect(solveB(['abcde fghij']), equals(1)); // valid
     });
     test('Example 2', () {
-      expect(solveB(["abcde xyz ecdab"]), equals(0)); // invalid
+      expect(solveB(['abcde xyz ecdab']), equals(0)); // invalid
     });
     test('Example 3', () {
-      expect(solveB(["a ab abc abd abf abj"]), equals(1)); // valid
+      expect(solveB(['a ab abc abd abf abj']), equals(1)); // valid
     });
     test('Example 4', () {
-      expect(solveB(["iiii oiii ooii oooi oooo"]), equals(1)); // valid
+      expect(solveB(['iiii oiii ooii oooi oooo']), equals(1)); // valid
     });
     test('Example 5', () {
-      expect(solveB(["oiii ioii iioi iiio"]), equals(0)); // invalid
+      expect(solveB(['oiii ioii iioi iiio']), equals(0)); // invalid
     });
     test('Solution', () {
-      File f = new File(DATA_FILE_PATH);
-      expect(solveB(f.readAsLinesSync()), equals(208));
+      expect(solveB(File(DATA_FILE_PATH).readAsLinesSync()), equals(208));
     });
   });
 }

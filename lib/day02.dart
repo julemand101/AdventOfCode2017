@@ -3,9 +3,9 @@
 
 import 'dart:math' as math;
 
-final Pattern TAB_OR_NEWLINE_REGEX = new RegExp('[ \t]');
+final Pattern TAB_OR_NEWLINE_REGEX = RegExp('[ \t]');
 
-typedef int ChecksumCalculator(List<int> input);
+typedef ChecksumCalculator = int Function(List<int> input);
 
 int solveA(String input) {
   return _solve(input, _getChecksumA);
@@ -16,10 +16,10 @@ int solveB(String input) {
 }
 
 int _solve(String input, ChecksumCalculator calculateChecksum) {
-  int checksum = 0;
+  var checksum = 0;
 
-  for (String row in input.split('\n').where((x) => x.trim().isNotEmpty)) {
-    var list =
+  for (final row in input.split('\n').where((x) => x.trim().isNotEmpty)) {
+    final list =
         row.split(TAB_OR_NEWLINE_REGEX).map(int.parse).toList(growable: false);
     checksum += calculateChecksum(list);
   }
@@ -33,12 +33,12 @@ int _getChecksumA(List<int> list) {
 
 int _getChecksumB(List<int> list) {
   list.sort();
-  for (int i = (list.length - 1); i > 0; i--) {
-    for (int k = (i - 1); k >= 0; k--) {
+  for (var i = list.length - 1; i > 0; i--) {
+    for (var k = i - 1; k >= 0; k--) {
       if (list[i] % list[k] == 0) {
         return list[i] ~/ list[k];
       }
     }
   }
-  throw "Bad input: $list";
+  throw Exception('Bad input: $list');
 }

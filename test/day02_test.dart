@@ -4,7 +4,7 @@
 import 'package:test/test.dart';
 import 'package:AdventOfCode2017/day02.dart';
 
-const String PUZZLE_INPUT = """
+const String PUZZLE_INPUT = '''
 62	1649	1731	76	51	1295	349	719	52	1984	2015	2171	981	1809	181	1715
 161	99	1506	1658	84	78	533	242	1685	86	107	1548	670	960	1641	610
 95	2420	2404	2293	542	2107	2198	121	109	209	2759	1373	1446	905	1837	111
@@ -21,30 +21,30 @@ const String PUZZLE_INPUT = """
 271	348	229	278	981	1785	2290	516	473	2037	737	2291	2521	1494	1121	244
 2208	2236	1451	621	1937	1952	865	61	1934	49	1510	50	1767	59	194	1344
 94	2312	2397	333	1192	106	2713	2351	2650	2663	703	157	89	510	1824	125
-""";
+''';
 
-const String PART_ONE_EXAMPLE_INPUT = """
+const String PART_ONE_EXAMPLE_INPUT = '''
 5 1 9 5
 7 5 3
 2 4 6 8
-""";
+''';
 
-const String PART_TWO_EXAMPLE_INPUT = """
+const String PART_TWO_EXAMPLE_INPUT = '''
 5 9 2 8
 9 4 7 3
 3 8 6 5
-""";
+''';
 
 void main() {
-  group("Part One", () {
+  group('Part One', () {
     test('Example 1', () {
-      expect(solveA("5 1 9 5"), equals(8));
+      expect(solveA('5 1 9 5'), equals(8));
     });
     test('Example 2', () {
-      expect(solveA("7 5 3"), equals(4));
+      expect(solveA('7 5 3'), equals(4));
     });
     test('Example 3', () {
-      expect(solveA("2 4 6 8"), equals(6));
+      expect(solveA('2 4 6 8'), equals(6));
     });
     test('Example Checksum', () {
       expect(solveA(PART_ONE_EXAMPLE_INPUT), equals(18));
@@ -54,15 +54,15 @@ void main() {
     });
   });
 
-  group("Part Two", () {
+  group('Part Two', () {
     test('Example 1', () {
-      expect(solveB("5 9 2 8"), equals(4));
+      expect(solveB('5 9 2 8'), equals(4));
     });
     test('Example 2', () {
-      expect(solveB("9 4 7 3"), equals(3));
+      expect(solveB('9 4 7 3'), equals(3));
     });
     test('Example 3', () {
-      expect(solveB("3 8 6 5"), equals(2));
+      expect(solveB('3 8 6 5'), equals(2));
     });
     test('Example Checksum', () {
       expect(solveB(PART_TWO_EXAMPLE_INPUT), equals(9));

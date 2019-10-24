@@ -5,11 +5,12 @@ homepage: http://www.archlinux.dk
 author: Jacob Bang <julemand101@archlinux.dk>
 
 environment:
-  sdk: ">=2.0.0 <3.0.0"
+  sdk: ">=2.3.0 <3.0.0"
 
 dependencies:
-  collection: "^1.14.11"
-  tuple: "^1.0.2"
+  collection: "^1.14.12"
+  tuple: "^1.0.3"
 
 dev_dependencies:
-  test: "^1.5.1"
+  test: "^1.6.8"
+  extra_pedantic: ^1.1.1+1

@@ -5,7 +5,8 @@ const int FACTOR_A = 16807;
 const int FACTOR_B = 48271;
 const int REMINDER = 2147483647;
 
-typedef int NextNumberCalculator(int input, int factor, int multiplesOf);
+typedef NextNumberCalculator = int Function(
+    int input, int factor, int multiplesOf);
 
 int solveA(int startA, int startB) {
   return _solve(startA, startB, 40000000, _nextA);
