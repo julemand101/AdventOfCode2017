@@ -12,16 +12,16 @@ class Program {
   }
 
   int visit(Set<String> history) {
-    if (history.contains(this.name)) {
+    if (history.contains(name)) {
       return 0;
     }
-    history.add(this.name);
+    history.add(name);
     return programs.fold(1, (count, program) => count + program.visit(history));
   }
 }
 
 int solveA(Iterable<String> pipes) {
-  return _solve(pipes)['0'].visit({});
+  return _solve(pipes)['0']!.visit({});
 }
 
 int solveB(Iterable<String> pipes) {
@@ -31,8 +31,10 @@ int solveB(Iterable<String> pipes) {
   while (cache.isNotEmpty) {
     final history = <String>{};
 
-    cache[cache.keys.first].visit(history);
-    history.forEach((name) => cache.remove(name));
+    cache[cache.keys.first]!.visit(history);
+    for (final name in history) {
+      cache.remove(name);
+    }
 
     count++;
   }
@@ -65,7 +67,7 @@ Program _getProgram(Map<String, Program> cache, String name) {
     program = Program(name);
     cache[name] = program;
   } else {
-    program = cache[name];
+    program = cache[name]!;
   }
   return program;
 }

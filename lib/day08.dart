@@ -9,7 +9,7 @@ class Memory {
 
   int operator [](String register) {
     if (_registers.containsKey(register)) {
-      return _registers[register];
+      return _registers[register]!;
     } else {
       return 0;
     }

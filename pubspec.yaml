@@ -1,16 +1,13 @@
-name: AdventOfCode2017
+name: advent_of_code_2017
 description: Solutions for Advent of Code 2017.
 version: 0.0.1
-homepage: http://www.archlinux.dk
-author: Jacob Bang <julemand101@archlinux.dk>
 
 environment:
-  sdk: ">=2.3.0 <3.0.0"
+  sdk: "^3.5.0"
 
 dependencies:
-  collection: "^1.14.12"
-  tuple: "^1.0.3"
+  collection: ^1.19.0
 
 dev_dependencies:
-  test: "^1.6.8"
-  extra_pedantic: ^1.1.1+1
+  lints: ^4.0.0
+  test: ^1.25.0

@@ -64,12 +64,16 @@ int solveB(List<String> input) {
     for (final p1 in copyList) {
       for (final p2 in copyList) {
         if (p1.id != p2.id && p1.equalPosition(p2)) {
-          particles..remove(p1)..remove(p2);
+          particles
+            ..remove(p1)
+            ..remove(p2);
         }
       }
     }
 
-    particles.forEach((x) => x.tick());
+    for (final x in particles) {
+      x.tick();
+    }
   }
 
   return particles.length;

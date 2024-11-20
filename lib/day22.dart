@@ -39,8 +39,8 @@ class Virus {
   };
 
   Virus(int mapSize, this.map)
-      : this.x = (mapSize / 2).floor(),
-        this.y = (mapSize / 2).floor();
+      : x = (mapSize / 2).floor(),
+        y = (mapSize / 2).floor();
 
   void burstA() {
     final isCurrentNodeInfected = map.isInfected(x, y);
@@ -77,7 +77,7 @@ class Virus {
         break;
     }
 
-    final newState = stateTransform[currentState];
+    final newState = stateTransform[currentState]!;
     map.setState(x, y, newState);
     if (newState == State.infected) {
       infectCount++;

@@ -64,14 +64,14 @@ int solve(List<String> input, int iterations) {
 
       // Add flips
       //  - H-flip
-      final h_flip = "$line3/$line2/$line1";
-      rules3x3[h_flip] = to;
+      final hFlip = "$line3/$line2/$line1";
+      rules3x3[hFlip] = to;
       // H-flip - 90 degrees
-      rules3x3[rotate3x3(h_flip)] = to;
+      rules3x3[rotate3x3(hFlip)] = to;
       // H-flip - 180 degrees
-      rules3x3[rotate3x3(rotate3x3(h_flip))] = to;
+      rules3x3[rotate3x3(rotate3x3(hFlip))] = to;
       // H-flip - 270 degrees
-      rules3x3[rotate3x3(rotate3x3(rotate3x3(h_flip)))] = to;
+      rules3x3[rotate3x3(rotate3x3(rotate3x3(hFlip)))] = to;
 
       //  - V-flip
       final sb = StringBuffer()
@@ -87,14 +87,14 @@ int solve(List<String> input, int iterations) {
         ..write(line3[1])
         ..write(line3[0]);
 
-      final v_flip = sb.toString();
-      rules3x3[v_flip] = to;
+      final vFlip = sb.toString();
+      rules3x3[vFlip] = to;
       // V-flip - 90 degrees
-      rules3x3[rotate3x3(v_flip)] = to;
+      rules3x3[rotate3x3(vFlip)] = to;
       // V-flip - 180 degrees
-      rules3x3[rotate3x3(rotate3x3(v_flip))] = to;
+      rules3x3[rotate3x3(rotate3x3(vFlip))] = to;
       // V-flip - 270 degrees
-      rules3x3[rotate3x3(rotate3x3(rotate3x3(v_flip)))] = to;
+      rules3x3[rotate3x3(rotate3x3(rotate3x3(vFlip)))] = to;
     }
   }
 
@@ -109,7 +109,7 @@ int solve(List<String> input, int iterations) {
       final numberOf2x2Blocks = math.pow((lines.length / 2).floor(), 2).toInt();
 
       if (numberOf2x2Blocks == 1) {
-        image = rules2x2[image];
+        image = rules2x2[image]!;
       } else {
         final images = <String>[];
 
@@ -122,14 +122,14 @@ int solve(List<String> input, int iterations) {
           }
         }
 
-        image = merge(images.map((part) => rules2x2[part]).toList());
+        image = merge(images.map((part) => rules2x2[part]!).toList());
       }
     } else if (lines.length % 3 == 0) {
       // Split into 3x3 blocks
       final numberOf3x3Blocks = math.pow((lines.length / 3).floor(), 2).toInt();
 
       if (numberOf3x3Blocks == 1) {
-        image = rules3x3[image];
+        image = rules3x3[image]!;
       } else {
         final images = <String>[];
 
@@ -145,7 +145,7 @@ int solve(List<String> input, int iterations) {
           }
         }
 
-        image = merge(images.map((part) => rules3x3[part]).toList());
+        image = merge(images.map((part) => rules3x3[part]!).toList());
       }
     } else {
       throw Exception('Should not happen!');

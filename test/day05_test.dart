@@ -3,9 +3,9 @@
 
 import 'dart:io';
 import 'package:test/test.dart';
-import 'package:AdventOfCode2017/day05.dart';
+import 'package:advent_of_code_2017/day05.dart';
 
-const String DATA_FILE_PATH = 'test/data/day05.txt';
+const String dataFilePath = 'test/data/day05.txt';
 
 void main() {
   group('Part One', () {
@@ -14,7 +14,7 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveA(File(DATA_FILE_PATH)
+          solveA(File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
               .map((line) => int.parse(line))
@@ -29,7 +29,7 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveB(File(DATA_FILE_PATH)
+          solveB(File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
               .map((line) => int.parse(line))

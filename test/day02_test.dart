@@ -2,9 +2,9 @@
 // https://adventofcode.com/2017/day/2
 
 import 'package:test/test.dart';
-import 'package:AdventOfCode2017/day02.dart';
+import 'package:advent_of_code_2017/day02.dart';
 
-const String PUZZLE_INPUT = '''
+const String puzzleInput = '''
 62	1649	1731	76	51	1295	349	719	52	1984	2015	2171	981	1809	181	1715
 161	99	1506	1658	84	78	533	242	1685	86	107	1548	670	960	1641	610
 95	2420	2404	2293	542	2107	2198	121	109	209	2759	1373	1446	905	1837	111
@@ -23,13 +23,13 @@ const String PUZZLE_INPUT = '''
 94	2312	2397	333	1192	106	2713	2351	2650	2663	703	157	89	510	1824	125
 ''';
 
-const String PART_ONE_EXAMPLE_INPUT = '''
+const String partOneExampleInput = '''
 5 1 9 5
 7 5 3
 2 4 6 8
 ''';
 
-const String PART_TWO_EXAMPLE_INPUT = '''
+const String partTwoExampleInput = '''
 5 9 2 8
 9 4 7 3
 3 8 6 5
@@ -47,10 +47,10 @@ void main() {
       expect(solveA('2 4 6 8'), equals(6));
     });
     test('Example Checksum', () {
-      expect(solveA(PART_ONE_EXAMPLE_INPUT), equals(18));
+      expect(solveA(partOneExampleInput), equals(18));
     });
     test('Solution', () {
-      expect(solveA(PUZZLE_INPUT), equals(44216));
+      expect(solveA(puzzleInput), equals(44216));
     });
   });
 
@@ -65,10 +65,10 @@ void main() {
       expect(solveB('3 8 6 5'), equals(2));
     });
     test('Example Checksum', () {
-      expect(solveB(PART_TWO_EXAMPLE_INPUT), equals(9));
+      expect(solveB(partTwoExampleInput), equals(9));
     });
     test('Solution', () {
-      expect(solveB(PUZZLE_INPUT), equals(320));
+      expect(solveB(puzzleInput), equals(320));
     });
   });
 }

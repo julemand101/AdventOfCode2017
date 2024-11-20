@@ -3,7 +3,7 @@
 
 import 'dart:math' as math;
 
-final Pattern TAB_OR_NEWLINE_REGEX = RegExp('[ \t]');
+final Pattern tabOrNewlineRegExp = RegExp('[ \t]');
 
 typedef ChecksumCalculator = int Function(List<int> input);
 
@@ -20,7 +20,7 @@ int _solve(String input, ChecksumCalculator calculateChecksum) {
 
   for (final row in input.split('\n').where((x) => x.trim().isNotEmpty)) {
     final list =
-        row.split(TAB_OR_NEWLINE_REGEX).map(int.parse).toList(growable: false);
+        row.split(tabOrNewlineRegExp).map(int.parse).toList(growable: false);
     checksum += calculateChecksum(list);
   }
 

@@ -1,8 +1,7 @@
 // --- Day 3: Spiral Memory ---
 // https://adventofcode.com/2017/day/3
 
-import 'dart:math' as math;
-import 'package:tuple/tuple.dart';
+import 'dart:math';
 
 int solveA(int input) {
   if (input == 1) {
@@ -26,7 +25,7 @@ int solveA(int input) {
    */
 
   final boxSize = _getBoxSize(input);
-  final minNumberBox = (math.pow(boxSize - 2, 2)).toInt() + 1;
+  final minNumberBox = (pow(boxSize - 2, 2)).toInt() + 1;
   final travelFromCenter = (boxSize / 2).floor();
 
   /* Example of distance map of the outermost edge in previous example:
@@ -58,15 +57,15 @@ int solveA(int input) {
 }
 
 int _getBoxSize(int input) {
-  final size = math.sqrt(input).ceil();
+  final size = sqrt(input).ceil();
   return (size % 2 == 0) ? size + 1 : size;
 }
 
 int solveB(int input) {
-  final memory = <Tuple2<int, int>, int>{};
+  final memory = <Point<int>, int>{};
 
   // Start position
-  var position = const Tuple2(0, 0);
+  var position = const Point(0, 0);
 
   // Initial value
   _setValue(memory, position, 1);
@@ -79,10 +78,9 @@ int solveB(int input) {
   return _getValueByTuple(memory, position);
 }
 
-Tuple2<int, int> _getNextStep(
-    Map<Tuple2<int, int>, int> memory, Tuple2<int, int> pos) {
-  final x = pos.item1;
-  final y = pos.item2;
+Point<int> _getNextStep(Map<Point<int>, int> memory, Point<int> pos) {
+  final x = pos.x;
+  final y = pos.y;
 
   final north = _getValue(memory, x, y + 1) != 0;
   final west = _getValue(memory, x - 1, y) != 0;
@@ -90,27 +88,27 @@ Tuple2<int, int> _getNextStep(
   final south = _getValue(memory, x, y - 1) != 0;
 
   if ((!north && !west && !east && !south) || (north && !south && !east)) {
-    return Tuple2(x + 1, y); // east
+    return Point(x + 1, y); // east
   }
 
   if (!north && west) {
-    return Tuple2(x, y + 1); // north
+    return Point(x, y + 1); // north
   }
 
   if (!west && south) {
-    return Tuple2(x - 1, y); // west
+    return Point(x - 1, y); // west
   }
 
   if (east && !south) {
-    return Tuple2(x, y - 1); // south
+    return Point(x, y - 1); // south
   }
 
   throw Exception('This should never happen!');
 }
 
-int _get3x3AreaSum(Map<Tuple2<int, int>, int> memory, Tuple2<int, int> pos) {
-  final centerX = pos.item1;
-  final centerY = pos.item2;
+int _get3x3AreaSum(Map<Point<int>, int> memory, Point<int> pos) {
+  final centerX = pos.x;
+  final centerY = pos.y;
 
   return _getValue(memory, centerX - 1, centerY + 1) +
       _getValue(memory, centerX, centerY + 1) +
@@ -123,17 +121,16 @@ int _get3x3AreaSum(Map<Tuple2<int, int>, int> memory, Tuple2<int, int> pos) {
       _getValue(memory, centerX + 1, centerY - 1);
 }
 
-int _getValue(Map<Tuple2<int, int>, int> memory, int x, int y) {
-  final key = Tuple2(x, y);
-  return (memory.containsKey(key)) ? memory[key] : 0;
+int _getValue(Map<Point<int>, int> memory, int x, int y) {
+  final key = Point(x, y);
+  return memory[key] ?? 0;
 }
 
-int _getValueByTuple(Map<Tuple2<int, int>, int> memory, Tuple2 key) {
-  return (memory.containsKey(key)) ? memory[key] : 0;
+int _getValueByTuple(Map<Point<int>, int> memory, Point<int> key) {
+  return memory[key] ?? 0;
 }
 
-void _setValue(
-    Map<Tuple2<int, int>, int> memory, Tuple2<int, int> pos, int value) {
+void _setValue(Map<Point<int>, int> memory, Point<int> pos, int value) {
   if (memory.containsKey(pos)) {
     throw Exception('Trying to write $value in $pos');
   }

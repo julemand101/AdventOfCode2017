@@ -2,9 +2,9 @@
 // https://adventofcode.com/2017/day/1
 
 import 'package:test/test.dart';
-import 'package:AdventOfCode2017/day01.dart';
+import 'package:advent_of_code_2017/day01.dart';
 
-const String PUZZLE_INPUT =
+const String puzzleInput =
     '23736999148234612466339528635467298545732686574853341217977818839783527958'
     '41499719997985122794292687271717554614189745585382464299867475324178461575'
     '26523238931351898548279549456694488433438982744782258279173323381571985454'
@@ -49,7 +49,7 @@ void main() {
       expect(solveA('91212129'), equals(9));
     });
     test('Solution', () {
-      expect(solveA(PUZZLE_INPUT), equals(995));
+      expect(solveA(puzzleInput), equals(995));
     });
   });
 
@@ -70,7 +70,7 @@ void main() {
       expect(solveB('12131415'), equals(4));
     });
     test('Solution', () {
-      expect(solveB(PUZZLE_INPUT), equals(1130));
+      expect(solveB(puzzleInput), equals(1130));
     });
   });
 }

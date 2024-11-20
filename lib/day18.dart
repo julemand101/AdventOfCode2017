@@ -9,19 +9,15 @@ class Memory {
   final Queue<int> _outQueue;
   final Map<String, int> _registers = {};
 
-  Memory([this._inQueue, this._outQueue]);
+  Memory([Queue<int>? inQueue, Queue<int>? outQueue])
+      : _inQueue = inQueue ?? Queue(),
+        _outQueue = outQueue ?? Queue();
 
   void setRegister(String register, int value) {
     _registers[register] = value;
   }
 
-  int getRegister(String register) {
-    if (_registers.containsKey(register)) {
-      return _registers[register];
-    } else {
-      return 0;
-    }
-  }
+  int getRegister(String register) => _registers[register] ?? 0;
 
   int getValue(String value) => int.tryParse(value) ?? getRegister(value);
 
@@ -36,7 +32,7 @@ class Memory {
 }
 
 int solveA(List<String> instructions) {
-  int last_played_frequency = 0;
+  int lastPlayedFrequency = 0;
   final mem = Memory();
 
   for (int i = 0; i < instructions.length; i++) {
@@ -47,22 +43,22 @@ int solveA(List<String> instructions) {
     final y = parts.length == 3 ? parts[2] : null;
 
     if (opcode == 'snd') {
-      last_played_frequency = mem.getValue(x);
+      lastPlayedFrequency = mem.getValue(x);
     } else if (opcode == 'set') {
-      mem.setRegister(x, mem.getValue(y));
+      mem.setRegister(x, mem.getValue(y!));
     } else if (opcode == 'add') {
-      mem.setRegister(x, mem.getRegister(x) + mem.getValue(y));
+      mem.setRegister(x, mem.getRegister(x) + mem.getValue(y!));
     } else if (opcode == 'mul') {
-      mem.setRegister(x, mem.getRegister(x) * mem.getValue(y));
+      mem.setRegister(x, mem.getRegister(x) * mem.getValue(y!));
     } else if (opcode == 'mod') {
-      mem.setRegister(x, mem.getRegister(x) % mem.getValue(y));
+      mem.setRegister(x, mem.getRegister(x) % mem.getValue(y!));
     } else if (opcode == 'rcv') {
       if (mem.getValue(x) != 0) {
         break;
       }
     } else if (opcode == 'jgz') {
       if (mem.getValue(x) > 0) {
-        i += mem.getValue(y) - 1;
+        i += mem.getValue(y!) - 1;
         continue;
       }
     } else {
@@ -70,7 +66,7 @@ int solveA(List<String> instructions) {
     }
   }
 
-  return last_played_frequency;
+  return lastPlayedFrequency;
 }
 
 int solveB(List<String> instructions) {
@@ -92,7 +88,7 @@ int solveB(List<String> instructions) {
   return memB.sendCounter;
 }
 
-Iterable runProgram(List<String> instructions, Memory mem) sync* {
+Iterable<Null> runProgram(List<String> instructions, Memory mem) sync* {
   for (int i = 0; i < instructions.length; i++) {
     final instruction = instructions[i];
     final parts = instruction.split(" ");
@@ -103,13 +99,13 @@ Iterable runProgram(List<String> instructions, Memory mem) sync* {
     if (opcode == 'snd') {
       mem.send(mem.getValue(x));
     } else if (opcode == 'set') {
-      mem.setRegister(x, mem.getValue(y));
+      mem.setRegister(x, mem.getValue(y!));
     } else if (opcode == 'add') {
-      mem.setRegister(x, mem.getRegister(x) + mem.getValue(y));
+      mem.setRegister(x, mem.getRegister(x) + mem.getValue(y!));
     } else if (opcode == 'mul') {
-      mem.setRegister(x, mem.getRegister(x) * mem.getValue(y));
+      mem.setRegister(x, mem.getRegister(x) * mem.getValue(y!));
     } else if (opcode == 'mod') {
-      mem.setRegister(x, mem.getRegister(x) % mem.getValue(y));
+      mem.setRegister(x, mem.getRegister(x) % mem.getValue(y!));
     } else if (opcode == 'rcv') {
       while (!mem.canReceive) {
         yield null;
@@ -117,7 +113,7 @@ Iterable runProgram(List<String> instructions, Memory mem) sync* {
       mem.setRegister(x, mem.receive());
     } else if (opcode == 'jgz') {
       if (mem.getValue(x) > 0) {
-        i += mem.getValue(y) - 1;
+        i += mem.getValue(y!) - 1;
         continue;
       }
     } else {

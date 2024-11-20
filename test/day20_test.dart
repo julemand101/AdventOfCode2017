@@ -3,16 +3,16 @@
 
 import 'dart:io';
 import 'package:test/test.dart';
-import 'package:AdventOfCode2017/day20.dart';
+import 'package:advent_of_code_2017/day20.dart';
 
-const String DATA_FILE_PATH = 'test/data/day20.txt';
+const String dataFilePath = 'test/data/day20.txt';
 
-final List<String> EXAMPLE_PART_ONE = [
+final List<String> examplePartOne = [
   'p=< 3,0,0>, v=< 2,0,0>, a=<-1,0,0>',
   'p=< 4,0,0>, v=< 0,0,0>, a=<-2,0,0>'
 ];
 
-final List<String> EXAMPLE_PART_TWO = [
+final List<String> examplePartTwo = [
   'p=<-6,0,0>, v=< 3,0,0>, a=< 0,0,0>',
   'p=<-4,0,0>, v=< 2,0,0>, a=< 0,0,0>',
   'p=<-2,0,0>, v=< 1,0,0>, a=< 0,0,0>',
@@ -22,11 +22,11 @@ final List<String> EXAMPLE_PART_TWO = [
 void main() {
   group('Part One', () {
     test('Example 1', () {
-      expect(solveA(EXAMPLE_PART_ONE), equals(0));
+      expect(solveA(examplePartOne), equals(0));
     });
     test('Solution', () {
       expect(
-          solveA(File(DATA_FILE_PATH)
+          solveA(File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
               .toList(growable: false)),
@@ -36,11 +36,11 @@ void main() {
 
   group('Part Two', () {
     test('Example 1', () {
-      expect(solveB(EXAMPLE_PART_TWO), equals(1));
+      expect(solveB(examplePartTwo), equals(1));
     });
     test('Solution', () {
       expect(
-          solveB(File(DATA_FILE_PATH)
+          solveB(File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
               .toList(growable: false)),

@@ -3,20 +3,20 @@
 
 import 'dart:io';
 import 'package:test/test.dart';
-import 'package:AdventOfCode2017/day13.dart';
+import 'package:advent_of_code_2017/day13.dart';
 
-const String DATA_FILE_PATH = 'test/data/day13.txt';
+const String dataFilePath = 'test/data/day13.txt';
 
-final List<String> EXAMPLE = ['0: 3', '1: 2', '4: 4', '6: 4'];
+final List<String> example = ['0: 3', '1: 2', '4: 4', '6: 4'];
 
 void main() {
   group('Part One', () {
     test('Example 1', () {
-      expect(solveA(EXAMPLE), equals(24));
+      expect(solveA(example), equals(24));
     });
     test('Solution', () {
       expect(
-          solveA(File(DATA_FILE_PATH)
+          solveA(File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)),
           equals(2160));
@@ -25,11 +25,11 @@ void main() {
 
   group('Part Two', () {
     test('Example 1', () {
-      expect(solveB(EXAMPLE), equals(10));
+      expect(solveB(example), equals(10));
     });
     test('Solution', () {
       expect(
-          solveB(File(DATA_FILE_PATH)
+          solveB(File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)),
           equals(3907470));
@@ -40,12 +40,12 @@ void main() {
     const chunksize = 1000;
 
     test('Example 1', () {
-      expect(solveB_with_isolates(EXAMPLE, chunksize), completion(equals(10)));
+      expect(solveBWithIsolates(example, chunksize), completion(equals(10)));
     });
     test('Solution', () {
       expect(
-          solveB_with_isolates(
-              File(DATA_FILE_PATH)
+          solveBWithIsolates(
+              File(dataFilePath)
                   .readAsLinesSync()
                   .where((line) => line.trim().isNotEmpty),
               chunksize),

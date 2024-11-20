@@ -2,7 +2,7 @@
 // https://adventofcode.com/2017/day/15
 
 import 'package:test/test.dart';
-import 'package:AdventOfCode2017/day15.dart';
+import 'package:advent_of_code_2017/day15.dart';
 
 void main() {
   group('Part One', () {

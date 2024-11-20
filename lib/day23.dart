@@ -25,9 +25,9 @@ int solveA(List<String> program) {
     if (opcode == 'set') {
       registers[x] = y;
     } else if (opcode == 'sub') {
-      registers[x] -= y;
+      registers.update(x, (i) => i - y);
     } else if (opcode == 'mul') {
-      registers[x] *= y;
+      registers.update(x, (i) => i * y);
       mulCalls++;
     } else if (opcode == 'jnz') {
       if (registers[x] != 0) {
@@ -65,4 +65,4 @@ bool isPrime(int b) {
 }
 
 int getValue(Map<String, int> registers, String value) =>
-    int.tryParse(value) ?? registers[value];
+    int.tryParse(value) ?? registers[value]!;

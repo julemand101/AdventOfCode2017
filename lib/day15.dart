@@ -1,9 +1,9 @@
 // --- Day 15: Dueling Generators ---
 // https://adventofcode.com/2017/day/15
 
-const int FACTOR_A = 16807;
-const int FACTOR_B = 48271;
-const int REMINDER = 2147483647;
+const int factorA = 16807;
+const int factorB = 48271;
+const int reminder = 2147483647;
 
 typedef NextNumberCalculator = int Function(
     int input, int factor, int multiplesOf);
@@ -23,8 +23,8 @@ int _solve(int startA, int startB, int loopCount, NextNumberCalculator next,
   int result = 0;
 
   for (int i = 0; i < loopCount; i++) {
-    a = next(a, FACTOR_A, multiplesOfA);
-    b = next(b, FACTOR_B, multiplesOfB);
+    a = next(a, factorA, multiplesOfA);
+    b = next(b, factorB, multiplesOfB);
 
     if ((a & 0xFFFF) == (b & 0xFFFF)) {
       result++;
@@ -35,7 +35,7 @@ int _solve(int startA, int startB, int loopCount, NextNumberCalculator next,
 }
 
 int _nextA(int input, int factor, int multiplesOf) {
-  return (input * factor) % REMINDER;
+  return (input * factor) % reminder;
 }
 
 int _nextB(int input, int factor, int multiplesOf) {

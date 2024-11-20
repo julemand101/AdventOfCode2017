@@ -42,16 +42,16 @@ int solveB(List<String> lines) {
     final weight = int.parse(split[1].split(")")[0]);
 
     if (nodeCache.containsKey(name)) {
-      nodeCache[name]._weight = weight;
+      nodeCache[name]!._weight = weight;
     } else {
       nodeCache[name] = Node(weight);
     }
 
     if (line.contains(" -> ")) {
       final split = line.split(" -> ");
-      nodeCache[name].addNodes(split[1].split(", ").map((String nodeName) {
+      nodeCache[name]!.addNodes(split[1].split(", ").map((String nodeName) {
         if (nodeCache.containsKey(nodeName)) {
-          return nodeCache[nodeName];
+          return nodeCache[nodeName]!;
         } else {
           final node = Node(-1);
           nodeCache[nodeName] = node;
@@ -61,7 +61,7 @@ int solveB(List<String> lines) {
     }
   }
 
-  return _findWeight(nodeCache[solveA(lines)]);
+  return _findWeight(nodeCache[solveA(lines)]!);
 }
 
 int _findWeight(Node input) {
@@ -70,7 +70,7 @@ int _findWeight(Node input) {
   for (final node in input.children) {
     final weight = node.weight;
     if (map.containsKey(weight)) {
-      map[weight].add(node);
+      map[weight]!.add(node);
     } else {
       map[weight] = [node];
     }

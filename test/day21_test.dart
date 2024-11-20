@@ -3,11 +3,11 @@
 
 import 'dart:io';
 import 'package:test/test.dart';
-import 'package:AdventOfCode2017/day21.dart';
+import 'package:advent_of_code_2017/day21.dart';
 
-const String DATA_FILE_PATH = 'test/data/day21.txt';
+const String dataFilePath = 'test/data/day21.txt';
 
-final List<String> EXAMPLE = [
+final List<String> example = [
   '../.# => ##./#../...',
   '.#./..#/### => #..#/..../..../#..#'
 ];
@@ -15,12 +15,12 @@ final List<String> EXAMPLE = [
 void main() {
   group('Part One', () {
     test('Example 1', () {
-      expect(solve(EXAMPLE, 2), equals(12));
+      expect(solve(example, 2), equals(12));
     });
     test('Solution', () {
       expect(
           solve(
-              File(DATA_FILE_PATH)
+              File(dataFilePath)
                   .readAsLinesSync()
                   .where((line) => line.trim().isNotEmpty)
                   .toList(growable: false),
@@ -33,7 +33,7 @@ void main() {
     test('Solution', () {
       expect(
           solve(
-              File(DATA_FILE_PATH)
+              File(dataFilePath)
                   .readAsLinesSync()
                   .where((line) => line.trim().isNotEmpty)
                   .toList(growable: false),

@@ -3,11 +3,11 @@
 
 import 'dart:io';
 import 'package:test/test.dart';
-import 'package:AdventOfCode2017/day25.dart';
+import 'package:advent_of_code_2017/day25.dart';
 
-const String DATA_FILE_PATH = 'test/data/day25.txt';
+const String dataFilePath = 'test/data/day25.txt';
 
-final List<String> EXAMPLE = [
+final List<String> example = [
   'Begin in state A.',
   'Perform a diagnostic checksum after 6 steps.',
   'In state A:',
@@ -33,11 +33,11 @@ final List<String> EXAMPLE = [
 void main() {
   group('Part One', () {
     test('Example 1', () {
-      expect(solve(EXAMPLE), equals(3));
+      expect(solve(example), equals(3));
     });
     test('Solution', () {
       expect(
-          solve(File(DATA_FILE_PATH)
+          solve(File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)),
           equals(4230));

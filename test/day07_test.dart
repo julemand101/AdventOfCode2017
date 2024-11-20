@@ -3,11 +3,11 @@
 
 import 'dart:io';
 import 'package:test/test.dart';
-import 'package:AdventOfCode2017/day07.dart';
+import 'package:advent_of_code_2017/day07.dart';
 
-const String DATA_FILE_PATH = 'test/data/day07.txt';
+const String dataFilePath = 'test/data/day07.txt';
 
-final List<String> EXAMPLE = [
+final List<String> example = [
   'pbga (66)',
   'xhth (57)',
   'ebii (61)',
@@ -26,11 +26,11 @@ final List<String> EXAMPLE = [
 void main() {
   group('Part One', () {
     test('Example 1', () {
-      expect(solveA(EXAMPLE), equals('tknk'));
+      expect(solveA(example), equals('tknk'));
     });
     test('Solution', () {
       expect(
-          solveA(File(DATA_FILE_PATH)
+          solveA(File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
               .toList(growable: false)),
@@ -40,11 +40,11 @@ void main() {
 
   group('Part Two', () {
     test('Example 1', () {
-      expect(solveB(EXAMPLE), equals(60));
+      expect(solveB(example), equals(60));
     });
     test('Solution', () {
       expect(
-          solveB(File(DATA_FILE_PATH)
+          solveB(File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
               .toList(growable: false)),

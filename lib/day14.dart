@@ -1,9 +1,9 @@
 // --- Day 14: Disk Defragmentation ---
 // https://adventofcode.com/2017/day/14
 
-import 'package:AdventOfCode2017/day10.dart' as knothash;
+import 'package:advent_of_code_2017/day10.dart' as knothash;
 
-final int CODEUNIT_1 = "1".codeUnitAt(0);
+final int codeUnit1 = "1".codeUnitAt(0);
 
 int solveA(String input) {
   int result = 0;
@@ -12,7 +12,7 @@ int solveA(String input) {
     result += BigInt.parse(knothash.solveB("$input-$i"), radix: 16)
         .toRadixString(2)
         .codeUnits
-        .where((x) => x == CODEUNIT_1)
+        .where((x) => x == codeUnit1)
         .length;
   }
 
@@ -25,7 +25,7 @@ int solveB(String input) {
         .toRadixString(2)
         .padLeft(128, "0")
         .codeUnits
-        .map((value) => value == CODEUNIT_1)
+        .map((value) => value == codeUnit1)
         .toList(growable: false);
   }, growable: false);
 

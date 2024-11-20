@@ -26,11 +26,9 @@ abstract class Command {
 }
 
 class SpinCommand extends Command {
-  int length;
+  final int length;
 
-  SpinCommand(String input) {
-    this.length = int.parse(input);
-  }
+  SpinCommand(String input) : length = int.parse(input);
 
   @override
   void execute(List<String> programs) {
@@ -39,13 +37,13 @@ class SpinCommand extends Command {
 }
 
 class ExchangeCommand extends Command {
-  int posA;
-  int posB;
+  late final int posA;
+  late final int posB;
 
   ExchangeCommand(String input) {
     final parts = input.split("/");
-    this.posA = int.parse(parts[0]);
-    this.posB = int.parse(parts[1]);
+    posA = int.parse(parts[0]);
+    posB = int.parse(parts[1]);
   }
 
   @override
@@ -55,13 +53,13 @@ class ExchangeCommand extends Command {
 }
 
 class PartnerCommand extends Command {
-  String a;
-  String b;
+  late final String a;
+  late final String b;
 
   PartnerCommand(String input) {
     final parts = input.split("/");
-    this.a = parts[0];
-    this.b = parts[1];
+    a = parts[0];
+    b = parts[1];
   }
 
   @override
@@ -106,7 +104,9 @@ List<String> _findLoopCount(List<String> programs, List<Command> commands) {
 
   // ignore: literal_only_boolean_expressions
   while (true) {
-    commands.forEach((command) => command.execute(programs));
+    for (final command in commands) {
+      command.execute(programs);
+    }
     final string = programs.join();
 
     if (string == find) {

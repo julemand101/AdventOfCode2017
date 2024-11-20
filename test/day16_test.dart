@@ -3,10 +3,10 @@
 
 import 'dart:io';
 import 'package:test/test.dart';
-import 'package:AdventOfCode2017/day16.dart';
+import 'package:advent_of_code_2017/day16.dart';
 
-const String DATA_FILE_PATH = 'test/data/day16.txt';
-final int CODEUNIT_FOR_LETTER_SMALL_A = 'a'.codeUnitAt(0);
+const String dataFilePath = 'test/data/day16.txt';
+final int codeUnitForLetterSmallA = 'a'.codeUnitAt(0);
 
 void main() {
   group('Part One', () {
@@ -16,7 +16,7 @@ void main() {
     test('Solution', () {
       expect(
           solveA(_getPrograms(16),
-              File(DATA_FILE_PATH).readAsLinesSync().first.split(',')),
+              File(dataFilePath).readAsLinesSync().first.split(',')),
           equals('dcmlhejnifpokgba'));
     });
   });
@@ -38,7 +38,7 @@ void main() {
       expect(
           solveB(
               _getPrograms(16),
-              File(DATA_FILE_PATH).readAsLinesSync().first.split(','),
+              File(dataFilePath).readAsLinesSync().first.split(','),
               1000000000),
           equals('ifocbejpdnklamhg'));
     });
@@ -47,6 +47,6 @@ void main() {
 
 List<String> _getPrograms(int length) {
   return List.generate(
-      length, (x) => String.fromCharCode(CODEUNIT_FOR_LETTER_SMALL_A + x),
+      length, (x) => String.fromCharCode(codeUnitForLetterSmallA + x),
       growable: false);
 }

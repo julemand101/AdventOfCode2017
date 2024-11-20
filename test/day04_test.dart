@@ -3,9 +3,9 @@
 
 import 'dart:io';
 import 'package:test/test.dart';
-import 'package:AdventOfCode2017/day04.dart';
+import 'package:advent_of_code_2017/day04.dart';
 
-const String DATA_FILE_PATH = 'test/data/day04.txt';
+const String dataFilePath = 'test/data/day04.txt';
 
 void main() {
   group('Part One', () {
@@ -19,7 +19,7 @@ void main() {
       expect(solveA(['aa bb cc dd aaa']), equals(1)); // valid
     });
     test('Solution', () {
-      expect(solveA(File(DATA_FILE_PATH).readAsLinesSync()), equals(386));
+      expect(solveA(File(dataFilePath).readAsLinesSync()), equals(386));
     });
   });
 
@@ -40,7 +40,7 @@ void main() {
       expect(solveB(['oiii ioii iioi iiio']), equals(0)); // invalid
     });
     test('Solution', () {
-      expect(solveB(File(DATA_FILE_PATH).readAsLinesSync()), equals(208));
+      expect(solveB(File(dataFilePath).readAsLinesSync()), equals(208));
     });
   });
 }

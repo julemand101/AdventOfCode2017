@@ -3,8 +3,8 @@
 
 int solve(Iterable<String> input) {
   final rules = <String, Rule>{};
-  String state;
-  int checksum;
+  late String state;
+  late int checksum;
 
   // Parse
   final iter = input.iterator;
@@ -51,7 +51,7 @@ int solve(Iterable<String> input) {
   final tape = Tape();
 
   for (int step = 0; step < checksum; step++) {
-    final rule = rules[state];
+    final rule = rules[state]!;
     final currentValue = tape[cursor];
 
     tape[cursor] = rule.write(currentValue);
@@ -82,13 +82,13 @@ class Tape {
 }
 
 class Rule {
-  bool value0write;
-  int value0cursorMove;
-  String value0state;
+  late bool value0write;
+  late int value0cursorMove;
+  late String value0state;
 
-  bool value1write;
-  int value1cursorMove;
-  String value1state;
+  late bool value1write;
+  late int value1cursorMove;
+  late String value1state;
 
   bool write(bool value) => !value ? value0write : value1write;
   int cursorMove(bool value) => !value ? value0cursorMove : value1cursorMove;

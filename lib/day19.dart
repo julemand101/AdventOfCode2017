@@ -3,12 +3,12 @@
 
 import 'dart:typed_data';
 
-final int PLUS_RUNE = "+".runes.first;
-final int EMPTY_RUNE = " ".runes.first;
-final int VERTICAL_LINE_RUNE = "|".runes.first;
-final int HORIZONTAL_LINE_RUNE = "-".runes.first;
+final int plusRune = "+".runes.first;
+final int emptyRune = " ".runes.first;
+final int verticalLineRune = "|".runes.first;
+final int horizontalLineRune = "-".runes.first;
 
-enum Direction { UP, DOWN, LEFT, RIGHT }
+enum Direction { up, down, left, right }
 
 class Day19Result {
   final int steps;
@@ -36,52 +36,51 @@ Day19Result solve(List<String> input) {
 
   // Find start position
   int y = 0;
-  int x = network[y].indexOf(VERTICAL_LINE_RUNE);
-  Direction direction = Direction.DOWN;
+  int x = network[y].indexOf(verticalLineRune);
+  Direction direction = Direction.down;
 
   // ignore: literal_only_boolean_expressions
   while (true) {
-    final current_char = network[y][x];
+    final currentChar = network[y][x];
 
-    if (current_char == VERTICAL_LINE_RUNE ||
-        current_char == HORIZONTAL_LINE_RUNE) {
+    if (currentChar == verticalLineRune || currentChar == horizontalLineRune) {
       // Just continue in the same direction
-    } else if (current_char == PLUS_RUNE) {
-      if (direction != Direction.UP &&
+    } else if (currentChar == plusRune) {
+      if (direction != Direction.up &&
           y + 1 < network.length &&
-          network[y + 1][x] != EMPTY_RUNE) {
-        direction = Direction.DOWN;
-      } else if (direction != Direction.DOWN &&
+          network[y + 1][x] != emptyRune) {
+        direction = Direction.down;
+      } else if (direction != Direction.down &&
           y - 1 > 0 &&
-          network[y - 1][x] != EMPTY_RUNE) {
-        direction = Direction.UP;
-      } else if (direction != Direction.RIGHT &&
+          network[y - 1][x] != emptyRune) {
+        direction = Direction.up;
+      } else if (direction != Direction.right &&
           x - 1 > 0 &&
-          network[y][x - 1] != EMPTY_RUNE) {
-        direction = Direction.LEFT;
-      } else if (direction != Direction.LEFT &&
+          network[y][x - 1] != emptyRune) {
+        direction = Direction.left;
+      } else if (direction != Direction.left &&
           x + 1 < network[y].length &&
-          network[y][x + 1] != EMPTY_RUNE) {
-        direction = Direction.RIGHT;
+          network[y][x + 1] != emptyRune) {
+        direction = Direction.right;
       }
-    } else if (current_char == EMPTY_RUNE) {
+    } else if (currentChar == emptyRune) {
       break;
     } else {
       // Should be a letter so write it down and continue in the same direction
-      visitedLetters.writeCharCode(current_char);
+      visitedLetters.writeCharCode(currentChar);
     }
 
     switch (direction) {
-      case Direction.UP:
+      case Direction.up:
         y--;
         break;
-      case Direction.DOWN:
+      case Direction.down:
         y++;
         break;
-      case Direction.LEFT:
+      case Direction.left:
         x--;
         break;
-      case Direction.RIGHT:
+      case Direction.right:
         x++;
         break;
     }

@@ -20,7 +20,7 @@ int solveB(Iterable<String> inputs) {
   return delay;
 }
 
-Future<int> solveB_with_isolates(Iterable<String> inputs, int chunkSize) {
+Future<int> solveBWithIsolates(Iterable<String> inputs, int chunkSize) {
   final completer = Completer<int>();
   final map = _parse(inputs);
   var delay = 0;
@@ -92,7 +92,7 @@ int _solve(Map<int, int> map,
 
   for (int depth = 0; depth <= max; depth++) {
     if (map.containsKey(depth)) {
-      final range = map[depth];
+      final range = map[depth]!;
 
       if (_move(depth + startTime, range) == 0) {
         score += depth * range;

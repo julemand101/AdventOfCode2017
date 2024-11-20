@@ -3,11 +3,11 @@
 
 import 'dart:io';
 import 'package:test/test.dart';
-import 'package:AdventOfCode2017/day18.dart';
+import 'package:advent_of_code_2017/day18.dart';
 
-const String DATA_FILE_PATH = 'test/data/day18.txt';
+const String dataFilePath = 'test/data/day18.txt';
 
-final List<String> EXAMPLE_A = [
+final List<String> exampleA = [
   'set a 1',
   'add a 2',
   'mul a a',
@@ -20,7 +20,7 @@ final List<String> EXAMPLE_A = [
   'jgz a -2'
 ];
 
-final List<String> EXAMPLE_B = [
+final List<String> exampleB = [
   'snd 1',
   'snd 2',
   'snd p',
@@ -33,11 +33,11 @@ final List<String> EXAMPLE_B = [
 void main() {
   group('Part One', () {
     test('Example 1', () {
-      expect(solveA(EXAMPLE_A), equals(4));
+      expect(solveA(exampleA), equals(4));
     });
     test('Solution', () {
       expect(
-          solveA(File(DATA_FILE_PATH)
+          solveA(File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
               .toList(growable: false)),
@@ -47,11 +47,11 @@ void main() {
 
   group('Part Two', () {
     test('Example 1', () {
-      expect(solveB(EXAMPLE_B), equals(3));
+      expect(solveB(exampleB), equals(3));
     });
     test('Solution', () {
       expect(
-          solveB(File(DATA_FILE_PATH)
+          solveB(File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
               .toList(growable: false)),

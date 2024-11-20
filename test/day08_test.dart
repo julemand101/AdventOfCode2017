@@ -3,11 +3,11 @@
 
 import 'dart:io';
 import 'package:test/test.dart';
-import 'package:AdventOfCode2017/day08.dart';
+import 'package:advent_of_code_2017/day08.dart';
 
-const String DATA_FILE_PATH = 'test/data/day08.txt';
+const String dataFilePath = 'test/data/day08.txt';
 
-final List<String> EXAMPLE = [
+final List<String> example = [
   'b inc 5 if a > 1',
   'a inc 1 if b < 5',
   'c dec -10 if a >= 1',
@@ -17,11 +17,11 @@ final List<String> EXAMPLE = [
 void main() {
   group('Part One', () {
     test('Example 1', () {
-      expect(solveA(EXAMPLE), equals(1));
+      expect(solveA(example), equals(1));
     });
     test('Solution', () {
       expect(
-          solveA(File(DATA_FILE_PATH)
+          solveA(File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
               .toList(growable: false)),
@@ -31,11 +31,11 @@ void main() {
 
   group('Part Two', () {
     test('Example 1', () {
-      expect(solveB(EXAMPLE), equals(10));
+      expect(solveB(example), equals(10));
     });
     test('Solution', () {
       expect(
-          solveB(File(DATA_FILE_PATH)
+          solveB(File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
               .toList(growable: false)),

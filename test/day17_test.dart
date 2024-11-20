@@ -2,9 +2,9 @@
 // https://adventofcode.com/2017/day/17
 
 import 'package:test/test.dart';
-import 'package:AdventOfCode2017/day17.dart';
+import 'package:advent_of_code_2017/day17.dart';
 
-const PUZZLE_INPUT = 370;
+const puzzleInput = 370;
 
 void main() {
   group('Part One', () {
@@ -12,13 +12,13 @@ void main() {
       expect(solveA(3), equals(638));
     });
     test('Solution', () {
-      expect(solveA(PUZZLE_INPUT), equals(1244));
+      expect(solveA(puzzleInput), equals(1244));
     });
   });
 
   group('Part Two', () {
     test('Solution', () {
-      expect(solveB(PUZZLE_INPUT), equals(11162912));
+      expect(solveB(puzzleInput), equals(11162912));
     });
   });
 }

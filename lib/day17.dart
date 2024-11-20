@@ -3,26 +3,26 @@
 
 int solveA(int stepsForward) {
   final buffer = <int>[];
-  var current_position = 0;
+  var currentPosition = 0;
   buffer.add(0);
 
   for (int i = 1; i <= 2017; i++) {
-    current_position = (current_position + stepsForward) % buffer.length + 1;
-    buffer.insert(current_position, i);
+    currentPosition = (currentPosition + stepsForward) % buffer.length + 1;
+    buffer.insert(currentPosition, i);
   }
 
-  return buffer[(current_position + 1) % buffer.length];
+  return buffer[(currentPosition + 1) % buffer.length];
 }
 
 int solveB(int stepsForward) {
   int valueAfterZero = 0;
-  int current_position = 0;
-  int buffer_length = 1;
+  int currentPosition = 0;
+  int bufferLength = 1;
 
   for (int i = 1; i <= 50000000; i++) {
-    current_position = (current_position + stepsForward) % buffer_length++ + 1;
+    currentPosition = (currentPosition + stepsForward) % bufferLength++ + 1;
 
-    if (current_position == 1) {
+    if (currentPosition == 1) {
       valueAfterZero = i;
     }
   }
