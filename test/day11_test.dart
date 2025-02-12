@@ -23,22 +23,28 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveA(File(dataFilePath)
+        solveA(
+          File(dataFilePath)
               .readAsLinesSync()
               .firstWhere((line) => line.trim().isNotEmpty)
-              .split(',')),
-          equals(664));
+              .split(','),
+        ),
+        equals(664),
+      );
     });
   });
 
   group('Part Two', () {
     test('Solution', () {
       expect(
-          solveB(File(dataFilePath)
+        solveB(
+          File(dataFilePath)
               .readAsLinesSync()
               .firstWhere((line) => line.trim().isNotEmpty)
-              .split(',')),
-          equals(1447));
+              .split(','),
+        ),
+        equals(1447),
+      );
     });
   });
 }

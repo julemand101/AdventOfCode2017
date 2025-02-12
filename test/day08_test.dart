@@ -11,7 +11,7 @@ final List<String> example = [
   'b inc 5 if a > 1',
   'a inc 1 if b < 5',
   'c dec -10 if a >= 1',
-  'c inc -20 if c == 10'
+  'c inc -20 if c == 10',
 ];
 
 void main() {
@@ -21,11 +21,14 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveA(File(dataFilePath)
+        solveA(
+          File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
-              .toList(growable: false)),
-          equals(5143));
+              .toList(growable: false),
+        ),
+        equals(5143),
+      );
     });
   });
 
@@ -35,11 +38,14 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveB(File(dataFilePath)
+        solveB(
+          File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
-              .toList(growable: false)),
-          equals(6209));
+              .toList(growable: false),
+        ),
+        equals(6209),
+      );
     });
   });
 }

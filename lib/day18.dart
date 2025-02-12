@@ -10,8 +10,8 @@ class Memory {
   final Map<String, int> _registers = {};
 
   Memory([Queue<int>? inQueue, Queue<int>? outQueue])
-      : _inQueue = inQueue ?? Queue(),
-        _outQueue = outQueue ?? Queue();
+    : _inQueue = inQueue ?? Queue(),
+      _outQueue = outQueue ?? Queue();
 
   void setRegister(String register, int value) {
     _registers[register] = value;

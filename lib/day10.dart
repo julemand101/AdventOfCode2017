@@ -20,8 +20,12 @@ String solveB(String input) {
 
   // run a total of 64 rounds
   for (int i = 0; i < 64; i++) {
-    result = _knotHashRound(lengths, circularList,
-        currentPosition: result.currentPosition, skipSize: result.skipSize);
+    result = _knotHashRound(
+      lengths,
+      circularList,
+      currentPosition: result.currentPosition,
+      skipSize: result.skipSize,
+    );
   }
 
   final sb = StringBuffer();
@@ -37,8 +41,12 @@ String solveB(String input) {
   return sb.toString();
 }
 
-KnotHashResult _knotHashRound(List<int> lengths, List<int> circularList,
-    {int currentPosition = 0, int skipSize = 0}) {
+KnotHashResult _knotHashRound(
+  List<int> lengths,
+  List<int> circularList, {
+  int currentPosition = 0,
+  int skipSize = 0,
+}) {
   var newCurrentPosition = currentPosition;
   var newSkipSize = skipSize;
 
@@ -49,15 +57,20 @@ KnotHashResult _knotHashRound(List<int> lengths, List<int> circularList,
   }
 
   return KnotHashResult(
-      circularList[0] * circularList[1], newCurrentPosition, newSkipSize);
+    circularList[0] * circularList[1],
+    newCurrentPosition,
+    newSkipSize,
+  );
 }
 
 void _reverse(List<int> list, int start, int end) {
   final subList = <int>[];
 
-  for (var i = start % list.length;
-      (i + 1 % list.length) != (end + 1 % list.length);
-      i++) {
+  for (
+    var i = start % list.length;
+    (i + 1 % list.length) != (end + 1 % list.length);
+    i++
+  ) {
     subList.add(list[i % list.length]);
   }
 

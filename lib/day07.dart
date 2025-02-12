@@ -49,15 +49,17 @@ int solveB(List<String> lines) {
 
     if (line.contains(" -> ")) {
       final split = line.split(" -> ");
-      nodeCache[name]!.addNodes(split[1].split(", ").map((String nodeName) {
-        if (nodeCache.containsKey(nodeName)) {
-          return nodeCache[nodeName]!;
-        } else {
-          final node = Node(-1);
-          nodeCache[nodeName] = node;
-          return node;
-        }
-      }));
+      nodeCache[name]!.addNodes(
+        split[1].split(", ").map((String nodeName) {
+          if (nodeCache.containsKey(nodeName)) {
+            return nodeCache[nodeName]!;
+          } else {
+            final node = Node(-1);
+            nodeCache[nodeName] = node;
+            return node;
+          }
+        }),
+      );
     }
   }
 

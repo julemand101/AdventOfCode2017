@@ -15,38 +15,51 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveA(_getPrograms(16),
-              File(dataFilePath).readAsLinesSync().first.split(',')),
-          equals('dcmlhejnifpokgba'));
+        solveA(
+          _getPrograms(16),
+          File(dataFilePath).readAsLinesSync().first.split(','),
+        ),
+        equals('dcmlhejnifpokgba'),
+      );
     });
   });
 
   group('Part Two', () {
     test('Example 1', () {
       expect(
-          solveB(_getPrograms(5), ['s1', 'x3/4', 'pe/b'], 2), equals('ceadb'));
+        solveB(_getPrograms(5), ['s1', 'x3/4', 'pe/b'], 2),
+        equals('ceadb'),
+      );
     });
     test('Example 2 (bonus)', () {
       expect(
-          solveB(_getPrograms(5), ['s1', 'x3/4', 'pe/b'], 4), equals('abcde'));
+        solveB(_getPrograms(5), ['s1', 'x3/4', 'pe/b'], 4),
+        equals('abcde'),
+      );
     });
     test('Example 3 (bonus)', () {
       expect(
-          solveB(_getPrograms(5), ['s1', 'x3/4', 'pe/b'], 0), equals('abcde'));
+        solveB(_getPrograms(5), ['s1', 'x3/4', 'pe/b'], 0),
+        equals('abcde'),
+      );
     });
     test('Solution', () {
       expect(
-          solveB(
-              _getPrograms(16),
-              File(dataFilePath).readAsLinesSync().first.split(','),
-              1000000000),
-          equals('ifocbejpdnklamhg'));
+        solveB(
+          _getPrograms(16),
+          File(dataFilePath).readAsLinesSync().first.split(','),
+          1000000000,
+        ),
+        equals('ifocbejpdnklamhg'),
+      );
     });
   });
 }
 
 List<String> _getPrograms(int length) {
   return List.generate(
-      length, (x) => String.fromCharCode(codeUnitForLetterSmallA + x),
-      growable: false);
+    length,
+    (x) => String.fromCharCode(codeUnitForLetterSmallA + x),
+    growable: false,
+  );
 }

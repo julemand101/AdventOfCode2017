@@ -14,12 +14,15 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveA(File(dataFilePath)
+        solveA(
+          File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
               .map((line) => int.parse(line))
-              .toList(growable: false)),
-          equals(372671));
+              .toList(growable: false),
+        ),
+        equals(372671),
+      );
     });
   });
 
@@ -29,12 +32,15 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveB(File(dataFilePath)
+        solveB(
+          File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
               .map((line) => int.parse(line))
-              .toList(growable: false)),
-          equals(25608480));
+              .toList(growable: false),
+        ),
+        equals(25608480),
+      );
     });
   });
 }

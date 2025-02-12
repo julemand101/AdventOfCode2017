@@ -17,7 +17,7 @@ final List<String> exampleA = [
   'rcv a',
   'jgz a -1',
   'set a 1',
-  'jgz a -2'
+  'jgz a -2',
 ];
 
 final List<String> exampleB = [
@@ -27,7 +27,7 @@ final List<String> exampleB = [
   'rcv a',
   'rcv b',
   'rcv c',
-  'rcv d'
+  'rcv d',
 ];
 
 void main() {
@@ -37,11 +37,14 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveA(File(dataFilePath)
+        solveA(
+          File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
-              .toList(growable: false)),
-          equals(4601));
+              .toList(growable: false),
+        ),
+        equals(4601),
+      );
     });
   });
 
@@ -51,11 +54,14 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveB(File(dataFilePath)
+        solveB(
+          File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
-              .toList(growable: false)),
-          equals(6858));
+              .toList(growable: false),
+        ),
+        equals(6858),
+      );
     });
   });
 }

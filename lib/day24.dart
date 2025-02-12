@@ -16,8 +16,12 @@ int solveB(Iterable<String> input) {
   return maxBridgeStrength;
 }
 
-int getHigestScore(List<Component> availableComponents, int end,
-    int bridgeLength, int sumScore) {
+int getHigestScore(
+  List<Component> availableComponents,
+  int end,
+  int bridgeLength,
+  int sumScore,
+) {
   var maxScore = 0;
 
   findNextComponents(availableComponents, end).forEach((component) {
@@ -25,9 +29,14 @@ int getHigestScore(List<Component> availableComponents, int end,
     newAvailableComponents.remove(component);
 
     final newEnd = component.getOpposite(end);
-    final score = component.score +
-        getHigestScore(newAvailableComponents, newEnd, bridgeLength + 1,
-            sumScore + component.score);
+    final score =
+        component.score +
+        getHigestScore(
+          newAvailableComponents,
+          newEnd,
+          bridgeLength + 1,
+          sumScore + component.score,
+        );
 
     if (score > maxScore) {
       maxScore = score;
@@ -55,8 +64,8 @@ class Component {
   final int b;
 
   Component(String input)
-      : a = int.parse(input.split("/")[0]),
-        b = int.parse(input.split("/")[1]);
+    : a = int.parse(input.split("/")[0]),
+      b = int.parse(input.split("/")[1]);
 
   int get score => a + b;
 

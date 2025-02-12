@@ -30,11 +30,14 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveA(File(dataFilePath)
+        solveA(
+          File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
-              .toList(growable: false)),
-          equals('azqje'));
+              .toList(growable: false),
+        ),
+        equals('azqje'),
+      );
     });
   });
 
@@ -44,11 +47,14 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveB(File(dataFilePath)
+        solveB(
+          File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
-              .toList(growable: false)),
-          equals(646));
+              .toList(growable: false),
+        ),
+        equals(646),
+      );
     });
   });
 }

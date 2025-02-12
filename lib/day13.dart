@@ -85,8 +85,11 @@ void _work(List<Object> args) {
   sport.send([-1, rport.sendPort]);
 }
 
-int _solve(Map<int, int> map,
-    {int startTime = 0, bool stopWhenCaught = false}) {
+int _solve(
+  Map<int, int> map, {
+  int startTime = 0,
+  bool stopWhenCaught = false,
+}) {
   final max = map.keys.reduce(math.max);
   int score = 0;
 

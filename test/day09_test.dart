@@ -35,10 +35,13 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveA(File(dataFilePath)
-              .readAsLinesSync()
-              .firstWhere((line) => line.trim().isNotEmpty)),
-          equals(14212));
+        solveA(
+          File(
+            dataFilePath,
+          ).readAsLinesSync().firstWhere((line) => line.trim().isNotEmpty),
+        ),
+        equals(14212),
+      );
     });
   });
 
@@ -66,10 +69,13 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveB(File(dataFilePath)
-              .readAsLinesSync()
-              .firstWhere((line) => line.trim().isNotEmpty)),
-          equals(6569));
+        solveB(
+          File(
+            dataFilePath,
+          ).readAsLinesSync().firstWhere((line) => line.trim().isNotEmpty),
+        ),
+        equals(6569),
+      );
     });
   });
 }

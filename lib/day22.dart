@@ -35,12 +35,12 @@ class Virus {
     State.clean: State.weakened,
     State.weakened: State.infected,
     State.infected: State.flagged,
-    State.flagged: State.clean
+    State.flagged: State.clean,
   };
 
   Virus(int mapSize, this.map)
-      : x = (mapSize / 2).floor(),
-        y = (mapSize / 2).floor();
+    : x = (mapSize / 2).floor(),
+      y = (mapSize / 2).floor();
 
   void burstA() {
     final isCurrentNodeInfected = map.isInfected(x, y);

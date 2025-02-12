@@ -15,7 +15,7 @@ final List<String> example = [
   '3/5',
   '0/1',
   '10/1',
-  '9/10'
+  '9/10',
 ];
 
 void main() {
@@ -25,10 +25,13 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveA(File(dataFilePath)
-              .readAsLinesSync()
-              .where((line) => line.trim().isNotEmpty)),
-          equals(1868));
+        solveA(
+          File(
+            dataFilePath,
+          ).readAsLinesSync().where((line) => line.trim().isNotEmpty),
+        ),
+        equals(1868),
+      );
     });
   });
   group('Part Two', () {
@@ -37,10 +40,13 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveB(File(dataFilePath)
-              .readAsLinesSync()
-              .where((line) => line.trim().isNotEmpty)),
-          equals(1841));
+        solveB(
+          File(
+            dataFilePath,
+          ).readAsLinesSync().where((line) => line.trim().isNotEmpty),
+        ),
+        equals(1841),
+      );
     });
   });
 }

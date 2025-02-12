@@ -81,20 +81,22 @@ String solveB(List<String> programs, List<String> danceMoves, int times) {
 }
 
 List<Command> _parse(List<String> danceMoves) {
-  return danceMoves.map((String danceMove) {
-    if (danceMove[0] == "s") {
-      // Spin
-      return SpinCommand(danceMove.substring(1));
-    } else if (danceMove[0] == "x") {
-      // Exchange
-      return ExchangeCommand(danceMove.substring(1));
-    } else if (danceMove[0] == "p") {
-      // Partner
-      return PartnerCommand(danceMove.substring(1));
-    } else {
-      throw Exception('Should never happen!');
-    }
-  }).toList(growable: false);
+  return danceMoves
+      .map((String danceMove) {
+        if (danceMove[0] == "s") {
+          // Spin
+          return SpinCommand(danceMove.substring(1));
+        } else if (danceMove[0] == "x") {
+          // Exchange
+          return ExchangeCommand(danceMove.substring(1));
+        } else if (danceMove[0] == "p") {
+          // Partner
+          return PartnerCommand(danceMove.substring(1));
+        } else {
+          throw Exception('Should never happen!');
+        }
+      })
+      .toList(growable: false);
 }
 
 List<String> _findLoopCount(List<String> programs, List<Command> commands) {

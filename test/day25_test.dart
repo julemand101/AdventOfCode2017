@@ -37,10 +37,13 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solve(File(dataFilePath)
-              .readAsLinesSync()
-              .where((line) => line.trim().isNotEmpty)),
-          equals(4230));
+        solve(
+          File(
+            dataFilePath,
+          ).readAsLinesSync().where((line) => line.trim().isNotEmpty),
+        ),
+        equals(4230),
+      );
     });
   });
 }

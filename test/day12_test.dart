@@ -14,7 +14,7 @@ final List<String> example = [
   '3 <-> 2, 4',
   '4 <-> 2, 3, 6',
   '5 <-> 6',
-  '6 <-> 4, 5'
+  '6 <-> 4, 5',
 ];
 
 void main() {
@@ -24,10 +24,13 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveA(File(dataFilePath)
-              .readAsLinesSync()
-              .where((line) => line.trim().isNotEmpty)),
-          equals(113));
+        solveA(
+          File(
+            dataFilePath,
+          ).readAsLinesSync().where((line) => line.trim().isNotEmpty),
+        ),
+        equals(113),
+      );
     });
   });
 
@@ -37,10 +40,13 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveB(File(dataFilePath)
-              .readAsLinesSync()
-              .where((line) => line.trim().isNotEmpty)),
-          equals(202));
+        solveB(
+          File(
+            dataFilePath,
+          ).readAsLinesSync().where((line) => line.trim().isNotEmpty),
+        ),
+        equals(202),
+      );
     });
   });
 }

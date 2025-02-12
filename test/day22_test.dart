@@ -28,13 +28,15 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveA(
-              File(dataFilePath)
-                  .readAsLinesSync()
-                  .where((line) => line.trim().isNotEmpty)
-                  .toList(growable: false),
-              10000),
-          equals(5433));
+        solveA(
+          File(dataFilePath)
+              .readAsLinesSync()
+              .where((line) => line.trim().isNotEmpty)
+              .toList(growable: false),
+          10000,
+        ),
+        equals(5433),
+      );
     });
   });
   group('Part Two', () {
@@ -46,13 +48,15 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveB(
-              File(dataFilePath)
-                  .readAsLinesSync()
-                  .where((line) => line.trim().isNotEmpty)
-                  .toList(growable: false),
-              10000000),
-          equals(2512599));
+        solveB(
+          File(dataFilePath)
+              .readAsLinesSync()
+              .where((line) => line.trim().isNotEmpty)
+              .toList(growable: false),
+          10000000,
+        ),
+        equals(2512599),
+      );
     });
   });
 }

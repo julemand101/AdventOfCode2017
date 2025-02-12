@@ -9,14 +9,14 @@ const String dataFilePath = 'test/data/day20.txt';
 
 final List<String> examplePartOne = [
   'p=< 3,0,0>, v=< 2,0,0>, a=<-1,0,0>',
-  'p=< 4,0,0>, v=< 0,0,0>, a=<-2,0,0>'
+  'p=< 4,0,0>, v=< 0,0,0>, a=<-2,0,0>',
 ];
 
 final List<String> examplePartTwo = [
   'p=<-6,0,0>, v=< 3,0,0>, a=< 0,0,0>',
   'p=<-4,0,0>, v=< 2,0,0>, a=< 0,0,0>',
   'p=<-2,0,0>, v=< 1,0,0>, a=< 0,0,0>',
-  'p=< 3,0,0>, v=<-1,0,0>, a=< 0,0,0>'
+  'p=< 3,0,0>, v=<-1,0,0>, a=< 0,0,0>',
 ];
 
 void main() {
@@ -26,11 +26,14 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveA(File(dataFilePath)
+        solveA(
+          File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
-              .toList(growable: false)),
-          equals(170));
+              .toList(growable: false),
+        ),
+        equals(170),
+      );
     });
   });
 
@@ -40,11 +43,14 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveB(File(dataFilePath)
+        solveB(
+          File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
-              .toList(growable: false)),
-          equals(571));
+              .toList(growable: false),
+        ),
+        equals(571),
+      );
     });
   });
 }

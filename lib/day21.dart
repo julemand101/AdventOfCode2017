@@ -36,12 +36,13 @@ int solve(List<String> input, int iterations) {
       rules2x2['$line2/$line1'] = to;
 
       //  - V-flip
-      final sb = StringBuffer()
-        ..write(line1[1])
-        ..write(line1[0])
-        ..write('/')
-        ..write(line2[1])
-        ..write(line2[0]);
+      final sb =
+          StringBuffer()
+            ..write(line1[1])
+            ..write(line1[0])
+            ..write('/')
+            ..write(line2[1])
+            ..write(line2[0]);
       rules2x2[sb.toString()] = to;
     } else {
       // 3x3 rule
@@ -74,18 +75,19 @@ int solve(List<String> input, int iterations) {
       rules3x3[rotate3x3(rotate3x3(rotate3x3(hFlip)))] = to;
 
       //  - V-flip
-      final sb = StringBuffer()
-        ..write(line1[2])
-        ..write(line1[1])
-        ..write(line1[0])
-        ..write('/')
-        ..write(line2[2])
-        ..write(line2[1])
-        ..write(line2[0])
-        ..write('/')
-        ..write(line3[2])
-        ..write(line3[1])
-        ..write(line3[0]);
+      final sb =
+          StringBuffer()
+            ..write(line1[2])
+            ..write(line1[1])
+            ..write(line1[0])
+            ..write('/')
+            ..write(line2[2])
+            ..write(line2[1])
+            ..write(line2[0])
+            ..write('/')
+            ..write(line3[2])
+            ..write(line3[1])
+            ..write(line3[0]);
 
       final vFlip = sb.toString();
       rules3x3[vFlip] = to;
@@ -139,9 +141,11 @@ int solve(List<String> input, int iterations) {
           final line3 = lines[j + 2];
 
           for (int k = 0; k + 3 <= line1.length; k += 3) {
-            images.add('${line1[k]}${line1[k + 1]}${line1[k + 2]}/'
-                '${line2[k]}${line2[k + 1]}${line2[k + 2]}/'
-                '${line3[k]}${line3[k + 1]}${line3[k + 2]}');
+            images.add(
+              '${line1[k]}${line1[k + 1]}${line1[k + 2]}/'
+              '${line2[k]}${line2[k + 1]}${line2[k + 2]}/'
+              '${line3[k]}${line3[k + 1]}${line3[k + 2]}',
+            );
           }
         }
 

@@ -16,10 +16,13 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveA(File(dataFilePath)
-              .readAsLinesSync()
-              .where((line) => line.trim().isNotEmpty)),
-          equals(2160));
+        solveA(
+          File(
+            dataFilePath,
+          ).readAsLinesSync().where((line) => line.trim().isNotEmpty),
+        ),
+        equals(2160),
+      );
     });
   });
 
@@ -29,10 +32,13 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveB(File(dataFilePath)
-              .readAsLinesSync()
-              .where((line) => line.trim().isNotEmpty)),
-          equals(3907470));
+        solveB(
+          File(
+            dataFilePath,
+          ).readAsLinesSync().where((line) => line.trim().isNotEmpty),
+        ),
+        equals(3907470),
+      );
     });
   });
 
@@ -44,12 +50,14 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveBWithIsolates(
-              File(dataFilePath)
-                  .readAsLinesSync()
-                  .where((line) => line.trim().isNotEmpty),
-              chunksize),
-          completion(equals(3907470)));
+        solveBWithIsolates(
+          File(
+            dataFilePath,
+          ).readAsLinesSync().where((line) => line.trim().isNotEmpty),
+          chunksize,
+        ),
+        completion(equals(3907470)),
+      );
     });
   });
 }

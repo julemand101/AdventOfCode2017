@@ -9,11 +9,11 @@ int solveA(String input) {
   int result = 0;
 
   for (int i = 0; i < 128; i++) {
-    result += BigInt.parse(knothash.solveB("$input-$i"), radix: 16)
-        .toRadixString(2)
-        .codeUnits
-        .where((x) => x == codeUnit1)
-        .length;
+    result +=
+        BigInt.parse(
+          knothash.solveB("$input-$i"),
+          radix: 16,
+        ).toRadixString(2).codeUnits.where((x) => x == codeUnit1).length;
   }
 
   return result;

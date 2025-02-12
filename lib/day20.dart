@@ -41,10 +41,13 @@ class Particle {
 
 int solveA(List<String> input) {
   return parse(input)
-      .reduce((p1, p2) => manhattanDistanceFromZero(p1.acceleration) <
-              manhattanDistanceFromZero(p2.acceleration)
-          ? p1
-          : p2)
+      .reduce(
+        (p1, p2) =>
+            manhattanDistanceFromZero(p1.acceleration) <
+                    manhattanDistanceFromZero(p2.acceleration)
+                ? p1
+                : p2,
+      )
       .id;
 }
 
@@ -95,7 +98,10 @@ List<Particle> parse(List<String> input) {
 Coordinate parseCoordinate(String input) {
   final parts = input.substring(3, input.length - 1).trim().split(",");
   return Coordinate(
-      int.parse(parts[0]), int.parse(parts[1]), int.parse(parts[2]));
+    int.parse(parts[0]),
+    int.parse(parts[1]),
+    int.parse(parts[2]),
+  );
 }
 
 int manhattanDistanceFromZero(Coordinate coordinate) =>

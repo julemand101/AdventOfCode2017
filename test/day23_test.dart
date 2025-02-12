@@ -11,21 +11,27 @@ void main() {
   group('Part One', () {
     test('Solution', () {
       expect(
-          solveA(File(dataFilePath)
+        solveA(
+          File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
-              .toList(growable: false)),
-          equals(3025));
+              .toList(growable: false),
+        ),
+        equals(3025),
+      );
     });
   });
   group('Part Two', () {
     test('Solution', () {
       expect(
-          solveB(File(dataFilePath)
+        solveB(
+          File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
-              .toList(growable: false)),
-          equals(915));
+              .toList(growable: false),
+        ),
+        equals(915),
+      );
     });
   });
 }

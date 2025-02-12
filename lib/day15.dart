@@ -5,8 +5,8 @@ const int factorA = 16807;
 const int factorB = 48271;
 const int reminder = 2147483647;
 
-typedef NextNumberCalculator = int Function(
-    int input, int factor, int multiplesOf);
+typedef NextNumberCalculator =
+    int Function(int input, int factor, int multiplesOf);
 
 int solveA(int startA, int startB) {
   return _solve(startA, startB, 40000000, _nextA);
@@ -16,8 +16,14 @@ int solveB(int startA, int startB) {
   return _solve(startA, startB, 5000000, _nextB, 4, 8);
 }
 
-int _solve(int startA, int startB, int loopCount, NextNumberCalculator next,
-    [int multiplesOfA = 1, int multiplesOfB = 1]) {
+int _solve(
+  int startA,
+  int startB,
+  int loopCount,
+  NextNumberCalculator next, [
+  int multiplesOfA = 1,
+  int multiplesOfB = 1,
+]) {
   int a = startA;
   int b = startB;
   int result = 0;

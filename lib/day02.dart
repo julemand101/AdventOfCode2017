@@ -19,8 +19,10 @@ int _solve(String input, ChecksumCalculator calculateChecksum) {
   var checksum = 0;
 
   for (final row in input.split('\n').where((x) => x.trim().isNotEmpty)) {
-    final list =
-        row.split(tabOrNewlineRegExp).map(int.parse).toList(growable: false);
+    final list = row
+        .split(tabOrNewlineRegExp)
+        .map(int.parse)
+        .toList(growable: false);
     checksum += calculateChecksum(list);
   }
 

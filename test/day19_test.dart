@@ -13,7 +13,7 @@ final List<String> example = [
   '     A  |  C    ',
   ' F---|----E|--+ ',
   '     |  |  |  D ',
-  '     +B-+  +--+ '
+  '     +B-+  +--+ ',
 ];
 
 void main() {
@@ -23,11 +23,14 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveA(File(dataFilePath)
+        solveA(
+          File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
-              .toList(growable: false)),
-          equals('ITSZCJNMUO'));
+              .toList(growable: false),
+        ),
+        equals('ITSZCJNMUO'),
+      );
     });
   });
 
@@ -37,11 +40,14 @@ void main() {
     });
     test('Solution', () {
       expect(
-          solveB(File(dataFilePath)
+        solveB(
+          File(dataFilePath)
               .readAsLinesSync()
               .where((line) => line.trim().isNotEmpty)
-              .toList(growable: false)),
-          equals(17420));
+              .toList(growable: false),
+        ),
+        equals(17420),
+      );
     });
   });
 }
